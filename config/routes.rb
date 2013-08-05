@@ -8,10 +8,17 @@ Crazybid::Application.routes.draw do
   # See how all your routes lay out with "rake routes".
 
   # You can have the root of your site routed with "root"
-  # root 'welcome#index'
-  root 'listings#index'
-  match '/signup',  to: 'users#new',            via: 'get'
-  match '/signin',  to: 'users#new',            via: 'get'
+  root 'welcome#index'
+  #root 'listings#index'
+
+  devise_scope :user do 
+    get "/signup" => "devise/registrations#new" 
+    get "/signin" => "devise/sessions#new"
+  end
+
+
+  
+  #match '/signin',  to: 'users#new',            via: 'get'
   # Example of regular route:
   #   get 'products/:id' => 'catalog#view'
 
