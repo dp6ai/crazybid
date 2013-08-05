@@ -2,7 +2,14 @@ require 'spec_helper'
 
 def create_listing
   #this method creates an admin and also a listing
-  visit '/listing/new'
+  visit '/listings/new'
+  fill_in "Title"
+  fill_in "Description"
+  fill_in "Starting Price"
+  fill_in "RRP"
+  fill_in "Start Date"
+  fill_in "Time per bid"
+  fill_in "Initial Duration"
 end
 
 def logout_admin
@@ -19,7 +26,7 @@ describe "Listings" do
 
         context "as admin" do
 
-            xit "should allow an admin to create a listing" do
+            it "should allow an admin to create a listing" do
                 create_listing
                 visit '/'
                 expect(Listing.count).to eq 1

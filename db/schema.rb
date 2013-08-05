@@ -11,8 +11,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-
-ActiveRecord::Schema.define(version: 20130805141402) do
+ActiveRecord::Schema.define(version: 20130805144202) do
 
   create_table "listings", force: true do |t|
     t.string   "title"
@@ -21,15 +20,12 @@ ActiveRecord::Schema.define(version: 20130805141402) do
     t.integer  "current_price"
     t.integer  "rrp"
     t.date     "start_date"
-    t.string   "time"
     t.time     "time_left"
     t.time     "time_per_bid"
     t.datetime "created_at"
     t.datetime "updated_at"
+    t.time     "initial_duration"
   end
-
-ActiveRecord::Schema.define(version: 20130805140402) do
-
 
   create_table "users", force: true do |t|
     t.string   "email",                  default: "", null: false
