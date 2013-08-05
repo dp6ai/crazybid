@@ -11,10 +11,16 @@ def add_test_user
 end
 
 def log_in_test_user
-	visit '/sign-in'
-	fill_in('User name', :with => 'user1')
-	fill_in('Password', :with => 'pa55word')
-	click_link('Sign In')
+	visit '/signup'
+			within("#new_user") do
+				fill_in('user_first_name', :with => 'Kips')
+				fill_in('user_last_name', :with => 'Davenport')
+				fill_in('user_user_name', :with => 'user1')
+				fill_in('Email', :with => 'user1@mail.com')
+	    	fill_in('Password', :with => 'pa55word')
+	    	fill_in('user_password_confirmation', :with => 'pa55word')
+	    end
+	click_button('Create')
 end
 
 
@@ -49,50 +55,48 @@ describe 'User not logged in' do
 			expect(page).to have_field('Email')
 			expect(page).to have_field('Password')
 		end
-		xit 'should be able to add a user' do
+		it 'should be able to add a user' do
 			visit '/signup'
-			fill_in('First Name', :with => 'Kips')
-			fill_in('Last Name', :with => 'Davenport')
-			fill_in('User Name', :with => 'user1')
-			fill_in('Email', :with => 'user1@mail.com')
-    	fill_in('Password', :with => 'pa55word')
-    	click_link('Create my account')
-    	expect(page).to have_css('h2', text: 'Hi, User1')
+			within("#new_user") do
+				fill_in('user_first_name', :with => 'Kips')
+				fill_in('user_last_name', :with => 'Davenport')
+				fill_in('user_user_name', :with => 'user1')
+				fill_in('Email', :with => 'user1@mail.com')
+	    	fill_in('Password', :with => 'pa55word')
+	    	fill_in('user_password_confirmation', :with => 'pa55word')
+	    end
+	    click_button('Create')
+    	expect(page).to have_css('p', text: 'Welcome! You have signed up successfully')
 		end
-		xit 'should not be able to have a duplicate user name' do
+		it 'should not be able to have a duplicate email address' do
 			visit '/signup'
-			fill_in('First Name', :with => 'Kips')
-			fill_in('Last Name', :with => 'Davenport')
-			fill_in('User Name', :with => 'user123')
-			fill_in('Email', :with => 'user1@mail.com')
-    	fill_in('Password', :with => 'pa55word')
-    	click_link('Create my account')
-    	expect(page).to have_css('h2', text: 'This user name has already been taken')
-		end		
-		xit 'should not be able to have a duplicate email address' do
-			visit '/signup'
-			fill_in('First Name', :with => 'Kips')
-			fill_in('Last Name', :with => 'Davenport')
-			fill_in('User Name', :with => 'user1')
-			fill_in('Email', :with => 'dave@mail.com')
-    	fill_in('Password', :with => 'pa55word')
-    	click_link('Create my account')
-    	expect(page).to have_css('h2', text: 'This email address has already been registered')
+			within("#new_user") do
+				fill_in('user_first_name', :with => 'Kips')
+				fill_in('user_last_name', :with => 'Davenport')
+				fill_in('user_user_name', :with => 'user1')
+				fill_in('Email', :with => 'dave@mail.com')
+	    	fill_in('Password', :with => 'pa55word')
+	    	fill_in('user_password_confirmation', :with => 'pa55word')
+	    end
+    	click_button('Create')
+    	expect(page).to have_css('li', text: 'Email has already been taken')
 		end
 	end
-	describe '/sign-in' do
-		xit 'should be able to log in a user' do
-			visit '/sign-in'
-			fill_in('User name', :with => 'user1')
-			fill_in('Password', :with => 'pa55word')
-			click_link('Sign In')
-			expect(page).to have_css('h2', text: 'Hi, User1')
+	describe '/signin' do
+		it 'should be able to log in a user' do
+			visit '/signin'
+			within("#new_user") do
+				fill_in('user_user_name', :with => 'user1')
+				fill_in('Password', :with => 'pa55word')
+			end
+			click_button('Sign')
+			expect(page).to have_css('p', text: 'Welcome! You have signed up successfully')
 		end
 	end
 end
 
 describe 'User logged in' do
-	before(:all){log_in_test_user}
+	#before(:all){log_in_test_user}
 	describe '/' do
 		xit 'should greet a user' do
 			visit '/'
