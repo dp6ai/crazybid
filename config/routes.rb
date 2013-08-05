@@ -11,7 +11,7 @@ Crazybid::Application.routes.draw do
   # root 'welcome#index'
   root 'listings#index'
   match '/signup',  to: 'users#new',            via: 'get'
-
+  match '/signin',  to: 'users#new',            via: 'get'
   # Example of regular route:
   #   get 'products/:id' => 'catalog#view'
 
