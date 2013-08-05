@@ -19,7 +19,7 @@ describe "Listings" do
 
         context "as admin" do
 
-            it "should allow an admin to create a listing" do
+            xit "should allow an admin to create a listing" do
                 create_listing
                 visit '/'
                 expect(Listing.count).to eq 1
@@ -28,7 +28,7 @@ describe "Listings" do
                 expect(page).to have_content #related to listing
             end
 
-            it "shouldn't allow you to create a listing if not all forms filled in" do
+            xit "shouldn't allow you to create a listing if not all forms filled in" do
                 #do we need multiple tests for all the possible not filled properly combos?
             end
 
@@ -36,7 +36,7 @@ describe "Listings" do
 
         context "not as admin" do
 
-            it "should not allow a user to create a listing" do
+            xit "should not allow a user to create a listing" do
                 visit "/listing/new"
                 expect(current_path).to eq "/"
             end
@@ -50,7 +50,7 @@ describe "Listings" do
 
         context "as admin" do
 
-            it "should allow an admin to edit a listing" do
+            xit "should allow an admin to edit a listing" do
                 create_listing
                 visit '/listing/1'
                 click_on "Edit" #so we want an edit link on the page if admin?
@@ -65,7 +65,7 @@ describe "Listings" do
 
         context "not as admin" do
 
-            it "should not allow non-admins to see edit button" do
+            xit "should not allow non-admins to see edit button" do
                 create_listing
                 logout_admin
                 create_user
@@ -73,7 +73,7 @@ describe "Listings" do
                 expect(page).not_to have_css("button", text: "Edit")
             end
 
-            it "should not allow non-admins to view edit form" do
+            xit "should not allow non-admins to view edit form" do
                 create_listing
                 logout_admin
                 create_user
@@ -89,7 +89,7 @@ describe "Listings" do
 
         context "as admin" do
 
-            it "should allow a listing to be deleted if logged in as admin" do
+            xit "should allow a listing to be deleted if logged in as admin" do
                 create_listing
                 visit '/listing/1'
                 click_on "Delete"
@@ -102,7 +102,7 @@ describe "Listings" do
 
         context "not as admin" do
 
-            it "should not allow a listing to be deleted if not logged in as admin" do
+            xit "should not allow a listing to be deleted if not logged in as admin" do
                 create_listing
                 logout_admin
                 create_user
@@ -121,12 +121,12 @@ describe "Listings" do
 
         context "it has listings" do  
 
-            it "should display six active listings on the root page" do
+            xit "should display six active listings on the root page" do
                 visit "/"
                 #expect listings?
             end
 
-            it "should allow you to view individual listing page" do
+            xit "should allow you to view individual listing page" do
                 create_listing
                 visit "/"
                 click_on ##view a particular listing
@@ -137,12 +137,12 @@ describe "Listings" do
 
         context "it has no listings" do
 
-            it 'should display a message saying there are no listings' do
+            xit 'should display a message saying there are no listings' do
                 visit '/'
                 expect(page).to have_content "No listings"
             end 
 
-            it "should not be able to view a non-existent listing" do
+            xit "should not be able to view a non-existent listing" do
                 visit "/listing/1"
                 expect(current_path).to eq "/"
             end
