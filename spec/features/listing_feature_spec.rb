@@ -36,6 +36,7 @@ describe "Listings" do
 
         context "not as admin" do
 
+
             it "should not allow a user to create a listing" do
                 visit "/listings/new"
                 expect(current_path).to eq "/"
