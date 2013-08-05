@@ -34,6 +34,8 @@ end
 group :development, :test do
   gem 'sqlite3'
   gem 'rspec-rails'
+  gem 'guard-rspec'
+  gem 'terminal-notifier-guard'
 end
 
 group :test do
