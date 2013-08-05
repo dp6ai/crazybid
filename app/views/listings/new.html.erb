@@ -1,0 +1,26 @@
+<%= form_for(@listing) do |f| %>
+
+    <%= f.label :title %>
+    <%= f.text_field :title %>
+
+    <%= f.label :description %>
+    <%= f.text_area :description %>
+
+    <%= f.label :starting_price %>
+    <%= f.number :current_price %>
+
+    <%= f.label :rrp %>
+    <%= f.number :rrp %>
+
+    <%= f.label :start_date %>
+    <%= f.datetime :start_date %>
+
+    <%= f.label :time_per_bid %>
+    <%= f.time :time_per_bid %>
+
+    <%= f.label :initial_duration %>
+    <%= f.time :initial_duration %>
+
+    <%= f.submit "Submit" %>
+    
+<% end %>
