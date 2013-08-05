@@ -1,16 +1,19 @@
 require 'spec_helper'
 
-def add_test_user
-		User.create(
-		first_name:'Dave',
-		last_name: 'Smith',
-		user_name: 'user123',
-		email: 'dave@mail.com',
-		password: 'pa55word'
-		)
+User.delete_all
+
+browser = Capybara.current_session.driver.browser
+if browser.respond_to?(:clear_cookies)
+  # Rack::MockSession
+  browser.clear_cookies
+elsif browser.respond_to?(:manage) and browser.manage.respond_to?(:delete_all_cookies)
+  # Selenium::WebDriver
+  browser.manage.delete_all_cookies
+else
+  raise "Don't know how to clear cookies. Weird driver?"
 end
 
-def log_in_test_user
+def add_test_user
 	visit '/signup'
 			within("#new_user") do
 				fill_in('user_first_name', :with => 'Kips')
@@ -23,31 +26,28 @@ def log_in_test_user
 	click_button('Create')
 end
 
-
 describe 'User not logged in' do
 	describe '/' do
-		xit 'should not show the account link' do
+		it 'should not show the account link' do
 			visit '/'
       expect(page).to_not have_no_content 'Account'
 		end
-		xit 'should not show the bank link' do
+		it 'should not show the bank link' do
 			visit '/'
       expect(page).to_not have_no_content 'Bank'
 		end
-		xit 'should show the login link' do
+		it 'should show the login link' do
 			visit '/'
 			expect(page).to have_content 'Log In'
 		end
-		xit 'should show the signup link' do 
+		it 'should show the signup link' do 
 			visit '/'
 			expect(page).to have_content 'Sign Up'
 		end
 	end
 
 	describe '/signup' do
-		before(:all){add_test_user}
-
-		xit 'should have the correct fields' do
+		it 'should have the correct fields' do
 			visit '/signup'
 			expect(page).to have_field('First name')
 			expect(page).to have_field('Last name')
@@ -69,12 +69,13 @@ describe 'User not logged in' do
     	expect(page).to have_css('p', text: 'Welcome! You have signed up successfully')
 		end
 		it 'should not be able to have a duplicate email address' do
+			add_test_user
 			visit '/signup'
 			within("#new_user") do
 				fill_in('user_first_name', :with => 'Kips')
 				fill_in('user_last_name', :with => 'Davenport')
 				fill_in('user_user_name', :with => 'user1')
-				fill_in('Email', :with => 'dave@mail.com')
+				fill_in('Email', :with => 'user1@mail.com')
 	    	fill_in('Password', :with => 'pa55word')
 	    	fill_in('user_password_confirmation', :with => 'pa55word')
 	    end
@@ -83,7 +84,8 @@ describe 'User not logged in' do
 		end
 	end
 	describe '/signin' do
-		it 'should be able to log in a user' do
+		before(:all){add_test_user}
+		xit 'should be able to log in a user' do
 			visit '/signin'
 			within("#new_user") do
 				fill_in('user_user_name', :with => 'user1')
