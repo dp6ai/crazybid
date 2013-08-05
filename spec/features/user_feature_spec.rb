@@ -41,7 +41,7 @@ describe 'User not logged in' do
 	describe '/signup' do
 		before(:all){add_test_user}
 
-		it 'should have the correct fields' do
+		xit 'should have the correct fields' do
 			visit '/signup'
 			expect(page).to have_field('First name')
 			expect(page).to have_field('Last name')
@@ -49,7 +49,7 @@ describe 'User not logged in' do
 			expect(page).to have_field('Email')
 			expect(page).to have_field('Password')
 		end
-		it 'should be able to add a user' do
+		xit 'should be able to add a user' do
 			visit '/signup'
 			fill_in('First Name', :with => 'Kips')
 			fill_in('Last Name', :with => 'Davenport')
@@ -59,7 +59,7 @@ describe 'User not logged in' do
     	click_link('Create my account')
     	expect(page).to have_css('h2', text: 'Hi, User1')
 		end
-		it 'should not be able to have a duplicate user name' do
+		xit 'should not be able to have a duplicate user name' do
 			visit '/signup'
 			fill_in('First Name', :with => 'Kips')
 			fill_in('Last Name', :with => 'Davenport')
@@ -69,7 +69,7 @@ describe 'User not logged in' do
     	click_link('Create my account')
     	expect(page).to have_css('h2', text: 'This user name has already been taken')
 		end		
-		it 'should not be able to have a duplicate email address' do
+		xit 'should not be able to have a duplicate email address' do
 			visit '/signup'
 			fill_in('First Name', :with => 'Kips')
 			fill_in('Last Name', :with => 'Davenport')
