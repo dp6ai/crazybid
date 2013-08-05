@@ -8,11 +8,12 @@ def create_listing
   visit '/listings/new'
   fill_in "Title", with: "Macbook"
   fill_in "Description", with: "this is a really nice macbook"
-  fill_in "Starting Price", with: 1340
-  fill_in "RRP", with: 1340
-  fill_in "Start Date", with: 20130412 
+  fill_in "Starting price", with: 1340
+  fill_in "Rrp", with: 1340
+  fill_in "Start date", with: 20130412 
   fill_in "Time per bid", with: 10
-  fill_in "Initial Duration", with: 10000
+  fill_in "Initial duration", with: 10000
+  click_on "Submit"
 end
 
 def logout_admin
@@ -27,12 +28,14 @@ def create_user
     fill_in "Email", with: "1@ex.com"
     fill_in "Password", with: "12345678"
     fill_in "Password confirmation", with: "12345678"
-    click_on "Sign up"
+    click_on "Create my account"
 end
 
 def create_admin
     create_user
-    User.last.admin = true
+    last_user = User.last
+    last_user.admin = true
+    last_user.save
     expect(User.last.admin).to eq true
 end
 
@@ -45,15 +48,35 @@ describe "Listings" do
 
             it "should allow an admin to create a listing" do
                 create_listing
-                visit '/'
                 expect(Listing.count).to eq 1
-                expect(page).to have_content #releated to listing
-                click_on #listing 1
-                expect(page).to have_content #related to listing
+            end
+
+            context "created listing" do
+
+                it "should automatically have the time left and current price saved" do
+                    Listing.last.current_price.should eq 0.01
+                    Listing.start_date.should eq #whatever date we set
+                    Listing.initial_duration.should eq 10000
+                end
+
+
+                it "should have the new listing on the index" do
+                    visit '/'
+                    expect(page).to have_content "Macbook" #releated to listing
+                    expect(page).to have ...
+                end
+
+                it "should have the new listing information on its own page" do
+                    visit '/listing/1'
+                    expect(page).to have_content "Macbook" #related to listing
+                end    
             end
 
             xit "shouldn't allow you to create a listing if not all forms filled in" do
                 #do we need multiple tests for all the possible not filled properly combos?
+            end
+
+            it "a created listing should have a time set based on ..." do
             end
 
         end

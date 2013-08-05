@@ -7,19 +7,19 @@
     <%= f.text_area :description %>
 
     <%= f.label :starting_price %>
-    <%= f.number :current_price %>
+    <%= f.number_field :starting_price %>
 
     <%= f.label :rrp %>
-    <%= f.number :rrp %>
+    <%= f.number_field :rrp %>
 
     <%= f.label :start_date %>
-    <%= f.datetime :start_date %>
+    <%= f.datetime_field :start_date %>
 
     <%= f.label :time_per_bid %>
-    <%= f.time :time_per_bid %>
+    <%= f.number_field :time_per_bid %>
 
     <%= f.label :initial_duration %>
-    <%= f.time :initial_duration %>
+    <%= f.number_field :initial_duration %>
 
     <%= f.submit "Submit" %>
     

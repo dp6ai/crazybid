@@ -10,5 +10,10 @@ include ListingsHelper
 
     end
 
+    def create
+      Listing.create(params[:listing].permit(:title, :description, :starting_price, :rrp, :start_date, :time_per_bid, :initial_duration))
+      redirect_to "/"
+    end
+
 
 end
