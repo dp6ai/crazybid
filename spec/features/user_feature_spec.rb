@@ -20,7 +20,7 @@ end
 
 describe 'User not logged in' do
 	describe '/' do
-		it 'should not show the account link' do
+		xit 'should not show the account link' do
 			visit '/'
       expect(page).to_not have_no_content 'Account'
 		end
@@ -32,51 +32,51 @@ describe 'User not logged in' do
 			visit '/'
 			expect(page).to have_content 'Log In'
 		end
-		xit 'should show the sign-up link' do 
+		xit 'should show the signup link' do 
 			visit '/'
 			expect(page).to have_content 'Sign Up'
 		end
 	end
 
-	describe '/sign-up' do
+	describe '/signup' do
 		before(:all){add_test_user}
 
-		xit 'should have the correct fields' do
-			visit '/sign-up'
+		it 'should have the correct fields' do
+			visit '/signup'
 			expect(page).to have_field('First name')
 			expect(page).to have_field('Last name')
 			expect(page).to have_field('User name')
 			expect(page).to have_field('Email')
 			expect(page).to have_field('Password')
 		end
-		xit 'should be able to add a user' do
-			visit '/sign-up'
+		it 'should be able to add a user' do
+			visit '/signup'
 			fill_in('First Name', :with => 'Kips')
 			fill_in('Last Name', :with => 'Davenport')
 			fill_in('User Name', :with => 'user1')
 			fill_in('Email', :with => 'user1@mail.com')
     	fill_in('Password', :with => 'pa55word')
-    	click_link('Sign Up')
+    	click_link('Create my account')
     	expect(page).to have_css('h2', text: 'Hi, User1')
 		end
-		xit 'should not be able to have a duplicate user name' do
-			visit '/sign-up'
+		it 'should not be able to have a duplicate user name' do
+			visit '/signup'
 			fill_in('First Name', :with => 'Kips')
 			fill_in('Last Name', :with => 'Davenport')
 			fill_in('User Name', :with => 'user123')
 			fill_in('Email', :with => 'user1@mail.com')
     	fill_in('Password', :with => 'pa55word')
-    	click_link('Sign Up')
+    	click_link('Create my account')
     	expect(page).to have_css('h2', text: 'This user name has already been taken')
 		end		
-		xit 'should not be able to have a duplicate email address' do
-			visit '/sign-up'
+		it 'should not be able to have a duplicate email address' do
+			visit '/signup'
 			fill_in('First Name', :with => 'Kips')
 			fill_in('Last Name', :with => 'Davenport')
 			fill_in('User Name', :with => 'user1')
 			fill_in('Email', :with => 'dave@mail.com')
     	fill_in('Password', :with => 'pa55word')
-    	click_link('Sign Up')
+    	click_link('Create my account')
     	expect(page).to have_css('h2', text: 'This email address has already been registered')
 		end
 	end
