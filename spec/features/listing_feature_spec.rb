@@ -36,8 +36,9 @@ describe "Listings" do
 
         context "not as admin" do
 
-            xit "should not allow a user to create a listing" do
-                visit "/listing/new"
+
+            it "should not allow a user to create a listing" do
+                visit "/listings/new"
                 expect(current_path).to eq "/"
             end
 
@@ -52,13 +53,13 @@ describe "Listings" do
 
             xit "should allow an admin to edit a listing" do
                 create_listing
-                visit '/listing/1'
+                visit '/listings/1'
                 click_on "Edit" #so we want an edit link on the page if admin?
                 fill_in #some change
                 click_on "Update"
                 visit "/"
                 expect(page).to have_content #related to updated listing
-                visit "/listing/1"
+                visit "/listings/1"
                 expect(page).to have_content #related to updated listing
             end
         end
@@ -69,7 +70,7 @@ describe "Listings" do
                 create_listing
                 logout_admin
                 create_user
-                visit "/listing/1"
+                visit "/listings/1"
                 expect(page).not_to have_css("button", text: "Edit")
             end
 
@@ -77,7 +78,7 @@ describe "Listings" do
                 create_listing
                 logout_admin
                 create_user
-                visit "/listing/1/edit"
+                visit "/listings/1/edit"
                 expect(current_path).to eq "/"  #it should redirect
             end
 
@@ -91,7 +92,7 @@ describe "Listings" do
 
             xit "should allow a listing to be deleted if logged in as admin" do
                 create_listing
-                visit '/listing/1'
+                visit '/listings/1'
                 click_on "Delete"
                 expect(Listing.count).to eq 0 #we want to remove the listing right? Not just disable?
                 visit '/'
@@ -106,7 +107,7 @@ describe "Listings" do
                 create_listing
                 logout_admin
                 create_user
-                visit '/listing/1'
+                visit '/listings/1'
                 click_on "Delete"
                 expect(Listing.count).not_to eq 0
                 visit '/'
@@ -143,7 +144,7 @@ describe "Listings" do
             end 
 
             xit "should not be able to view a non-existent listing" do
-                visit "/listing/1"
+                visit "/listings/1"
                 expect(current_path).to eq "/"
             end
 
