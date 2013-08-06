@@ -11,7 +11,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20130806080410) do
+ActiveRecord::Schema.define(version: 20130806090555) do
 
   create_table "listings", force: true do |t|
     t.string   "title"
@@ -19,8 +19,8 @@ ActiveRecord::Schema.define(version: 20130806080410) do
     t.integer  "starting_price"
     t.integer  "current_price"
     t.integer  "rrp"
-    t.date     "start_date"
-    t.time     "time_left"
+    t.datetime "start_date"
+    t.time     "duration"
     t.time     "time_per_bid"
     t.datetime "created_at"
     t.datetime "updated_at"

@@ -3,3 +3,20 @@
 <h2>Bank</h2>
 <h2>Log In</h2>
 <h2>Sign Up</h2>
+
+<table border="1">
+
+  <tr>
+  <th>Title</th>
+  <th>Current Price</th>
+  <th>Expires On</th>
+  </tr>
+<% @listings.each do |listing| %>
+  <tr>
+  <td><a href="/listings/<%=listing.id%>"><%= listing.title %></a></td>
+  <td><%= listing.current_price %></td>
+  <td><%= listing.start_date + listing.duration %></td>
+  </tr> 
+<% end %>
+
+</table>
