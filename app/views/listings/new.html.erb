@@ -6,20 +6,20 @@
     <%= f.label :description %>
     <%= f.text_area :description %>
 
-    <%= f.label :starting_price %>
+    <%= f.label :starting_price, "Starting price(p)" %>
     <%= f.number_field :starting_price %>
 
-    <%= f.label :rrp %>
+    <%= f.label :rrp, "RRP(p)" %>
     <%= f.number_field :rrp %>
 
-    <%= f.label :start_date %>
-    <%= f.datetime_field :start_date %>
+<!--     <%= f.label :start_date %>
+    <%= f.datetime_select :start_date %> -->
 
-    <%= f.label :time_per_bid %>
+    <%= f.label :time_per_bid, "Time per bid (s)" %>
     <%= f.number_field :time_per_bid %>
 
-    <%= f.label :initial_duration %>
-    <%= f.number_field :initial_duration %>
+<!--     <%= f.label :default_end_date%>
+    <%= f.datetime_select :default_end_date %> -->
 
     <%= f.submit "Submit" %>
     

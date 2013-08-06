@@ -8,11 +8,9 @@ def create_listing
   visit '/listings/new'
   fill_in "Title", with: "Macbook"
   fill_in "Description", with: "this is a really nice macbook"
-  fill_in "Starting price", with: 1340
-  fill_in "Rrp", with: 1340
-  fill_in "Start date", with: 20130412 
+  fill_in "Starting price", with: 1
+  fill_in "RRP", with: 1340
   fill_in "Time per bid", with: 10
-  fill_in "Initial duration", with: 10000
   click_on "Submit"
 end
 
@@ -54,16 +52,17 @@ describe "Listings" do
             context "created listing" do
 
                 it "should automatically have the time left and current price saved" do
-                    Listing.last.current_price.should eq 0.01
-                    Listing.start_date.should eq #whatever date we set
-                    Listing.initial_duration.should eq 10000
+                    create_listing
+                    Listing.last.current_price.should eq 1
+                    #Listing.start_date.should eq #whatever date we set
+                    Listing.initial_duration.should eq 86400
                 end
 
 
                 it "should have the new listing on the index" do
                     visit '/'
                     expect(page).to have_content "Macbook" #releated to listing
-                    expect(page).to have ...
+                    #expect(page).to have ...
                 end
 
                 it "should have the new listing information on its own page" do
