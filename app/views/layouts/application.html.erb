@@ -35,6 +35,7 @@
     <%= favicon_link_tag 'favicon.ico', :rel => 'shortcut icon' %>
 
     <%= javascript_include_tag "application" %>
+
   </head>
   <body>
 
@@ -50,7 +51,7 @@
           <div class="container-fluid nav-collapse">
             <ul class="nav">
             	<% if user_signed_in? %>
-              	<li><%= link_to "Profile", "/path1"  %></li>
+              	<li><%= link_to "Profile", "/users/edit"  %></li>
               	<li><%= link_to "Bank", "/path2"  %></li>
               	<li><%= link_to "Sign Out", "/signout"  %></li>
               <% else %>
@@ -59,6 +60,9 @@
               <% end %>
             </ul>
           </div><!--/.nav-collapse -->
+          <% if user_signed_in? %>
+            <h2 class='welcome'>Welcome back, <%= current_user.first_name %></h2>
+          <% end %>
         </div>
       </div>
     </div>
@@ -70,9 +74,7 @@
         </div>
         <div class="span10">
           <%= bootstrap_flash %>
-          <% if user_signed_in? %>
-            <h2>Welcome back, <%= current_user.first_name %></h2>
-          <% end %>
+
           <%= yield %>
         </div>
         <div class="span1">
