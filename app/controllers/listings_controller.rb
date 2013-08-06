@@ -1,16 +1,16 @@
 class ListingsController < ApplicationController
-#before_filter :authenticate_user!
+    #before_filter :authenticate_user!
 
     def index
     	@listings = Listing.all
     end
 
+    include ListingsHelper
+
+
     def new
         redirect_to "/" unless user_signed_in? && is_admin?
         @listing = Listing.new
-    end
-
-
     end
 
     def create
