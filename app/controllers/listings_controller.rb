@@ -14,8 +14,14 @@ class ListingsController < ApplicationController
     end
 
     def create
-      Listing.create(params[:listing].permit(:title, :description, :starting_price, :rrp, :time_per_bid))
-      redirect_to "/"
+        @listing = Listing.create(params[:listing].permit(:title, :description, :starting_price, :rrp, :time_per_bid))
+
+        if @listing.save  
+            redirect_to "/"
+        else
+            render "new"
+        end
+
     end
 
     def show

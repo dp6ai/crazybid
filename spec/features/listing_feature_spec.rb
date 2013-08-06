@@ -84,21 +84,31 @@ describe "Listings" do
                   visit '/listings/new'
                   click_on "Submit"
                   expect(Listing.count).not_to eq 1
-                  expect(current_path).to eq "/listings/new"   
-                  expect(page).to have_content "Title missing"
-                  expect(page).to have_content "Description missing"
-                  expect(page).to have_content "Starting price missing"
-                  expect(page).to have_content "RRP missing"
-                  expect(page).to have_content "Time per bid missing"
+                  expect(page).to have_content "Title can't be blank"
+                  expect(page).to have_content "Description can't be blank"
+                  expect(page).to have_content "Starting price can't be blank"
+                  expect(page).to have_content "Rrp can't be blank"
+                  expect(page).to have_content "Time per bid can't be blank"
              end
 
-            it "a created listing should have a time set based on ..." do
+            it "shouldn't allow a listing to be created with negative number for rrp, starting price or time per bid" do
+                create_admin
+                visit '/listings/new'
+                fill_in "Title", with: "Macbook"
+                fill_in "Description", with: "this is a really nice macbook"
+                fill_in "Starting price", with: -1
+                fill_in "RRP", with: -1
+                fill_in "Time per bid", with: -1
+                click_on "Submit"
+                expect(Listing.count).not_to eq 1
+                expect(page).to have_content "Starting price must be greater than 0"
+                expect(page).to have_content "Rrp must be greater than 0"
+                expect(page).to have_content "Time per bid must be greater than 0"
             end
 
         end
 
         context "not as admin" do
-
 
             it "should not allow a user to create a listing" do
                 visit "/listings/new"
