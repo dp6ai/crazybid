@@ -8,11 +8,8 @@
 </div>
 
 
-<div class="span4">
-    <table class="listing-details">
-        <tr>
-            <th colspan="2"><%= @listing.title %></th>
-        </tr>
+<div class="span4 listing-details">
+    <table>
         <tr>
             <td>Price</td>
             <td><%= number_to_currency(@listing.current_price/100.0, precision: 2, unit: "&pound;") %></td>
@@ -21,8 +18,8 @@
             <td>Finishing in</td>
             <td><%=@listing.start_date + @listing.duration %></td>
         </tr>
-
     </table>
+    <button class="btn btn-primary btn-bid">Bid Now</button>
 </div>
 
 

@@ -2,3 +2,40 @@
 // They will automatically be included in application.css.
 // You can use Sass (SCSS) here: http://sass-lang.com/
 
+.listing-details{
+  border: 1px solid #888;
+  border-radius: 15px;
+  height: 275px;
+  text-align: center;
+}
+
+div.listing-details table{
+  height: auto;
+  margin: auto;
+}
+
+div.listing-details td{
+
+}
+
+td {
+  font-size: 20px;
+  padding: 50px 20px;
+  height: auto;
+}
+
+div.listing-details table tr:nth-child(2) td{
+  padding: 25px 20px
+}
+
+.btn-bid{
+  font-size: 20px;
+  padding: 10px;
+  background-image: none;
+  background-color: #3B5998;
+  color: white;
+}
+
+.btn-bid:hover{
+  background-color: #3B5998;;
+}
