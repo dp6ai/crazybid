@@ -1,4 +1,6 @@
 class Listing < ActiveRecord::Base
+  validates_presence_of :title, :description, :starting_price, :rrp, :time_per_bid
+
   before_save do |listing| 
     listing.start_date = Time.now
     listing.default_end_date = Time.now + 86400 
@@ -6,4 +8,7 @@ class Listing < ActiveRecord::Base
     listing.duration = 86400
   end
 
+
+
 end
+
