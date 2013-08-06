@@ -1,7 +1,7 @@
 Crazybid::Application.routes.draw do
   
   devise_for :users
-  resources :users
+  # resources :users
   resources :listings
 
   # The priority is based upon order of creation: first created -> highest priority.
@@ -16,8 +16,6 @@ Crazybid::Application.routes.draw do
     get "/signin" => "devise/sessions#new"
     get "/signout" => "devise/sessions#destroy"
   end
-
-
   
   #match '/signin',  to: 'users#new',            via: 'get'
   # Example of regular route:
