@@ -3,7 +3,7 @@ class Listing < ActiveRecord::Base
     listing.start_date = Time.now
     listing.default_end_date = Time.now + 86400 
     listing.current_price = listing.starting_price
-    listing.time_left = 86400
+    listing.duration = 86400
   end
 
 end

@@ -1,7 +1,16 @@
-<ul>
-	<li>HOME</li>
-	<li>Account</li>
-	<li>Bank</li>
-	<li>Log In</li>
-	<li>Sign Up</li>
-</ul>
+<table border="1">
+
+  <tr>
+  <th>Title</th>
+  <th>Current Price</th>
+  <th>Expires On</th>
+  </tr>
+<% @listings.each do |listing| %>
+  <tr>
+  <td><a href="/listings/<%=listing.id%>"><%= listing.title %></a></td>
+  <td><%= listing.current_price %></td>
+  <td><%= listing.start_date + listing.duration %></td>
+  </tr> 
+<% end %>
+
+</table>

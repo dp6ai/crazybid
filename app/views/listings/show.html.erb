@@ -1,0 +1,17 @@
+<table border="1">
+
+  <tr>
+  <th>Title</th>
+  <th>Description</th>
+  <th>Current Price</th>
+  <th>Expires On</th>
+  </tr>
+  <tr>
+  <td><%= @listing.title %></td>
+  <td><%= @listing.description %></td>
+  <td><%= @listing.current_price %></td>
+  <td><%= @listing.start_date + @listing.duration %></td>
+  </tr> 
+
+
+</table>
