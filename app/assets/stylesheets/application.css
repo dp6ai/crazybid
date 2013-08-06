@@ -201,3 +201,6 @@ a.list-group-item.active .list-group-item-text {
 	padding-bottom:6px;
 
 }
+.admin-lists{
+  cursor:pointer;
+}

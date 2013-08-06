@@ -17,6 +17,9 @@ Crazybid::Application.routes.draw do
     get "/signout" => "devise/sessions#destroy"
   end
   
+  get '/admin' => 'admin#index'
+
+
   #match '/signin',  to: 'users#new',            via: 'get'
   # Example of regular route:
   #   get 'products/:id' => 'catalog#view'
