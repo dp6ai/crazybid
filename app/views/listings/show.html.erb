@@ -1,17 +1,35 @@
-<table border="1">
 
-  <tr>
-  <th>Title</th>
-  <th>Description</th>
-  <th>Current Price</th>
-  <th>Expires On</th>
-  </tr>
-  <tr>
-  <td><%= @listing.title %></td>
-  <td><%= @listing.description %></td>
-  <td><%= @listing.current_price %></td>
-  <td><%= @listing.start_date + @listing.duration %></td>
-  </tr> 
+<h2><%=@listing.title%></h2>
+
+<div class="span6">
+    <div class="listing-image">
+        <%= image_tag("#{@listing.photo.url(:medium)}") %>
+    </div>
+</div>
 
 
-</table>
+<div class="span4">
+    <table class="listing-details">
+        <tr>
+            <th colspan="2"><%= @listing.title %></th>
+        </tr>
+        <tr>
+            <td>Price</td>
+            <td><%= number_to_currency(@listing.current_price/100.0, precision: 2, unit: "&pound;") %></td>
+        </tr>
+        <tr>
+            <td>Finishing in</td>
+            <td><%=@listing.start_date + @listing.duration %></td>
+        </tr>
+
+    </table>
+</div>
+
+
+<div class="listing-description span12">
+  <p><%= @listing.description %></p>
+</div>
+
+
+
+
