@@ -29,4 +29,6 @@ Crazybid::Application.configure do
   #devise config. change for prod
   config.action_mailer.default_url_options = { :host => 'localhost:3000' }
   config.assets.debug = true
+  
+  Paperclip.options[:command_path] = "/usr/local/bin/"
 end

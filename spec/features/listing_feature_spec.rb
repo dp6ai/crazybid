@@ -11,6 +11,7 @@ def create_listing
   fill_in "Starting price", with: 1
   fill_in "RRP", with: 1340
   fill_in "Time per bid", with: 10
+  page.attach_file("Photo", '/Users/jeremygoh/macbook.jpg')
   click_on "Submit"
 end
 
@@ -89,6 +90,7 @@ describe "Listings" do
                   expect(page).to have_content "Starting price can't be blank"
                   expect(page).to have_content "Rrp can't be blank"
                   expect(page).to have_content "Time per bid can't be blank"
+                  expect(page).to have_content "Photo can't be blank"
              end
 
             it "shouldn't allow a listing to be created with negative number for rrp, starting price or time per bid" do
