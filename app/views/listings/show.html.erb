@@ -27,6 +27,12 @@
   <p><%= @listing.description %></p>
 </div>
 
+<div id="timer">
+</div>
 
 
+
+<script>
+$("#timer").countdown({until:<%= (@listing.duration - (Time.now - @listing.start_date) ).to_i %> });
+</script>
 
