@@ -79,18 +79,18 @@ describe "Listings" do
                 end    
             end
 
-            xit "shouldn't allow you to create a listing if not all forms filled in" do
+            it "shouldn't allow you to create a listing if not all forms filled in" do
                   create_admin
                   visit '/listings/new'
-                  fill_in "Title", with: "Macbook"
-                  fill_in "Description", with: "this is a really nice macbook"
-                  fill_in "Starting price", with: 1
-                  fill_in "RRP", with: 1340
-                  fill_in "Time per bid", with: 10
                   click_on "Submit"
                   expect(Listing.count).not_to eq 1
-                  expect(current_path).to eq "/listings/new"
-            end
+                  expect(current_path).to eq "/listings/new"   
+                  expect(page).to have_content "Title missing"
+                  expect(page).to have_content "Description missing"
+                  expect(page).to have_content "Starting price missing"
+                  expect(page).to have_content "RRP missing"
+                  expect(page).to have_content "Time per bid missing"
+             end
 
             it "a created listing should have a time set based on ..." do
             end
