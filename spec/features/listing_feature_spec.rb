@@ -37,6 +37,8 @@ def create_admin
     expect(User.last.admin).to eq true
 end
 
+fake_time = Time.new(2013,8,6, 8,30,0)
+
 
 describe "Listings" do
 
@@ -51,29 +53,44 @@ describe "Listings" do
 
             context "created listing" do
 
-                it "should automatically have the time left and current price saved" do
+                it "should automatically have the time left and current price saved
+                and also have the initial duration set to 24 hours from the current time" do
+                    Time.stub(:now) { fake_time }
                     create_listing
                     Listing.last.current_price.should eq 1
-                    #Listing.start_date.should eq #whatever date we set
-                    Listing.initial_duration.should eq 86400
+                    Listing.last.start_date.should eq fake_time
+                    Listing.last.duration.should eq 86400
                 end
 
 
                 it "should have the new listing on the index" do
+                    create_listing
                     visit '/'
-                    expect(page).to have_content "Macbook" #releated to listing
-                    #expect(page).to have ...
+                    expect(page).to have_content "Macbook"
+                    expect(page).to have_content "1"
                 end
 
-                it "should have the new listing information on its own page" do
-                    visit '/listing/1'
-                    expect(page).to have_content "Macbook" #related to listing
+                it "should have the new listing information on its own page which you can click through" do
+                    create_listing
+                    visit '/'
+                    click_on "Macbook"
+                    expect(current_path).to eq "/listings/#{Listing.last.id}"
+                    expect(page).to have_content "Macbook"
                 end    
             end
 
-            xit "shouldn't allow you to create a listing if not all forms filled in" do
-                #do we need multiple tests for all the possible not filled properly combos?
-            end
+            it "shouldn't allow you to create a listing if not all forms filled in" do
+                  create_admin
+                  visit '/listings/new'
+                  click_on "Submit"
+                  expect(Listing.count).not_to eq 1
+                  expect(current_path).to eq "/listings/new"   
+                  expect(page).to have_content "Title missing"
+                  expect(page).to have_content "Description missing"
+                  expect(page).to have_content "Starting price missing"
+                  expect(page).to have_content "RRP missing"
+                  expect(page).to have_content "Time per bid missing"
+             end
 
             it "a created listing should have a time set based on ..." do
             end
