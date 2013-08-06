@@ -107,14 +107,22 @@ describe "Listings" do
             end
 
         end
+        
+        describe ListingsController, type: :controller do
 
-        context "not as admin" do
+                context "not as admin"do
 
-            it "should not allow a user to create a listing" do
-                visit "/listings/new"
-                expect(current_path).to eq "/"
-            end
+                    it "should not allow a user to create a listing" do
+                        visit "/listings/new"
+                        expect(current_path).to eq "/"
+                    end
 
+                    it "should not allow a user to post to the create" do
+                        post('create', {:listing=>{"title"=>"e", "description"=>"e", "starting_price"=>"1", "rrp"=>"1", "time_per_bid"=>"1"}})
+                        expect(Listing.count).not_to eq 1
+                    end
+
+                end
         end
 
     end
