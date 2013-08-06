@@ -1,0 +1,14 @@
+<div class="panel">
+  <!-- Default panel contents -->
+  <div class="panel-heading"><a href="/listings/<%=item.id%>"><%= item.title %></a></div>
+  <p><%= item.description %></p>
+
+  <!-- List group -->
+  <ul class="list-group">
+    <li class="list-group-item"><a href="/listings/<%=item.id%>"><img src="/assets/iphone.jpg" class="img-responsive" alt="Responsive image"></a></li>
+    <li class="list-group-item"><%= listing_auction_end(item) %></li>
+    <li class="list-group-item"><%= item.current_price %></li>
+    <li class="list-group-item"><%= "BID" %></li>
+    <li class="list-group-item"><%= "USER" %></li>
+  </ul>
+</div>

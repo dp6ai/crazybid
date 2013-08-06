@@ -65,12 +65,18 @@
 
     <div class="container-fluid">
       <div class="row-fluid">
+        <div class="span2">
+              <!-- empty -->
+        </div>
         <div class="span9">
           <%= bootstrap_flash %>
           <% if user_signed_in? %>
             <h2>Welcome back, <%= current_user.first_name %></h2>
           <% end %>
           <%= yield %>
+        </div>
+        <div class="span1">
+              <!-- empty -->
         </div>
       </div><!--/row-->
 

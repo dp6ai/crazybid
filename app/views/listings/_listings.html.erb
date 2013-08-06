@@ -1,16 +1,7 @@
-<table border="1">
-
-  <tr>
-  <th>Title</th>
-  <th>Current Price</th>
-  <th>Expires On</th>
-  </tr>
-<% @listings.each do |listing| %>
-  <tr>
-  <td><a href="/listings/<%=listing.id%>"><%= listing.title %></a></td>
-  <td><%= listing.current_price %></td>
-  <td><%= listing.start_date + listing.duration %></td>
-  </tr> 
-<% end %>
-
-</table>
+<div class="span9">
+  <% @listings.each do |listing| %>
+    <div class="span3">
+      <%= render 'list_item', item: listing %>
+    </div>
+  <% end %> 
+</div>
