@@ -1,38 +1,49 @@
+        
+<div class="span8 offset2 listing-container">
+    
+    <div class="row-fluid">
 
-<h2><%=@listing.title%></h2>
+        <div class="span8 listing-title">
+        <h1><%=@listing.title%></h1>
+        </div>
 
-<div class="span6">
-    <div class="listing-image">
-        <%= image_tag("#{@listing.photo.url(:medium)}") %>
     </div>
-</div>
+
+    <div class="row-fluid">
+
+        <div class="span5">
+            <div class="listing-image">
+                <%= image_tag("#{@listing.photo.url(:medium)}") %>
+            </div>
+        </div>
 
 
-<div class="span4 listing-details">
-    <table>
-        <tr>
-            <td>Price</td>
-            <td><%= number_to_currency(@listing.current_price/100.0, precision: 2, unit: "&pound;") %></td>
-        </tr>
-        <tr>
-            <td>Finishing in</td>
-            <td><%=@listing.start_date + @listing.duration %></td>
-        </tr>
-    </table>
-    <button class="btn btn-primary btn-bid">Bid Now</button>
-</div>
+        <div class="span5 listing-details">
+            <div class="listing-price">
+                <%= number_to_currency(@listing.current_price/100.0, precision: 2, unit: "&pound;") %>
+            </div>
+            <div class="listing-timer">
+            </div>
+            <button class="btn btn-primary btn-bid">Bid Now</button>
+            
+        </div>
 
+     </div>
 
-<div class="listing-description span12">
-  <p><%= @listing.description %></p>
-</div>
+     <div class="row-fluid">
+        <div class="listing-description-block span8">
+            <div class="listing-description">
+                <p><%= @listing.description %></p>
+            </div>
+        </div>
+    </div>
+   
 
-<div id="timer">
 </div>
 
 
 
 <script>
-$("#timer").countdown({until:<%= (@listing.duration - (Time.now - @listing.start_date) ).to_i %> });
+$(".listing-timer").countdown({until:<%= (@listing.duration - (Time.now - @listing.start_date) ).to_i %> });
 </script>
 
