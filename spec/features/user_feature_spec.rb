@@ -13,16 +13,14 @@ else
   raise "Don't know how to clear cookies. Weird driver?"
 end
 
-def add_test_user
-	visit '/signup'
-	visit "/users/sign_up"
-	fill_in "First name", with: "Bob"
-	fill_in "Last name", with: "Johnson"
-	fill_in "User name", with: "rob123"
-	fill_in "Email", with: "1@ex.com"
-	fill_in "Password", with: "12345678"
-	fill_in "Password confirmation", with: "12345678"
-	click_on "Create my account"
+
+def create_listing_and_login_non_admin
+  create_user
+  create_admin
+  sign_in_admin
+  create_listing
+  signout
+  create_user_non_admin
 end
 
 
@@ -30,19 +28,19 @@ describe 'User not logged in' do
 	describe '/' do
 		it 'should not show the account link' do
 			visit '/'
-      expect(page).to_not have_no_content 'Account'
+      expect(page).to have_no_content 'Account'
 		end
 		it 'should not show the bank link' do
 			visit '/'
-      expect(page).to_not have_no_content 'Bank'
+      expect(page).to have_no_content 'Bank'
 		end
 		it 'should show the login link' do
 			visit '/'
-			expect(page).to have_content 'Log In'
+			expect(page).to have_content 'Sign In'
 		end
 		it 'should show the signup link' do 
 			visit '/'
-			expect(page).to have_content 'Sign Up'
+			expect(page).to have_content 'Register'
 		end
 	end
 
@@ -56,26 +54,28 @@ describe 'User not logged in' do
 			expect(page).to have_field('Password')
 		end
 		it 'should be able to add a user' do
-			visit '/signup'
-	   add_test_user
+			create_user
     	expect(page).to have_content('Welcome! You have signed up successfully')
 		end
-		xit 'should not be able to have a duplicate email address' do
-			add_test_user
-			add_test_user
+		it 'should not be able to have a duplicate email address' do
+			create_user
+			signout
+			create_user
     	expect(page).to have_css('li', text: 'Email has already been taken')
 		end
 	end
 	describe '/signin' do
-		before(:all){add_test_user}
-		xit 'should be able to log in a user' do
+		before(:all){create_user}
+		it 'should be able to log in a user' do
+			create_user_non_admin
+			signout
 			visit '/signin'
 			within("#new_user") do
-				fill_in('user_user_name', :with => 'user1')
-				fill_in('Password', :with => 'pa55word')
+				fill_in('user_user_name', :with => 'bobby123')
+				fill_in('Password', :with => '87654321')
 			end
 			click_button('Sign')
-			expect(page).to have_css('p', text: 'Welcome! You have signed up successfully')
+			expect(page).to have_content('Welcome back, Bobby')
 		end
 	end
 end

@@ -1,5 +1,14 @@
-<div class="span12">
-  <% @listings.each do |listing| %>
+<div class="row-fluid">
+
+  <% @listings.pop(3).each do |listing| %>
+    <div class="span4">
+      <%= render 'list_item', item: listing %>
+    </div>
+  <% end %> 
+</div>
+<div class="row-fluid">
+
+  <% @listings.pop(3).each do |listing| %>
     <div class="span4">
       <%= render 'list_item', item: listing %>
     </div>

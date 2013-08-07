@@ -24,7 +24,11 @@
             </div>
             <div class="listing-timer">
             </div>
-            <a id="bid-<%= params[:id] %>" href="#">Bid Now</a>
+            <% if user_signed_in? %>
+                <a id="bid-<%= params[:id] %>" href="#">Bid Now</a>
+            <% else %>
+                <a id="bid-button" href="/signin">Bid Now</a>
+            <% end %>
             
         </div>
 

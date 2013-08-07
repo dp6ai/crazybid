@@ -58,9 +58,10 @@ describe "Bidding process" do
 
             it "should redirect to login/signup if try to make a bid" do
                 create_listing_and_login_non_admin
+                signout
                 visit '/listings/1'
                 click_on 'Bid Now'
-                expect(current_path).to eq "/login" #or are we expecting a popup?
+                expect(current_path).to eq "/signin" #or are we expecting a popup?
             end
 
         end
@@ -78,7 +79,7 @@ describe "Bidding process" do
         end
 
         context "expired ad or coming soon ad" do   #i.e. can't make a post request to the page. Is this even necessary?!
-            
+
             xit "should not allow a bid to be made if the ad is expired" do
                 #add expired listing
                 expect(Listing.last.bids.size).not_to eq 1  #so no bid should have registered
@@ -100,9 +101,16 @@ describe "Bidding process" do
 
     context "Success" do
 
-        xit "should increase price if a successful bid is made" do
+        xit "should add a bid if a successful bid is made" do
+            create_listing_and_login_non_admin
+            visit "/listings/1"
+            click_on 'Bid Now'
+            expect(Bid.all.count).to eq 1
+
+        end
+       xit "should increase price if a successful bid is made" do
             create_listing
-            visit "/listing/1"
+            visit "/listings/1"
             click_on "Bid"
             user.bid(Listing.last)
             expect(Listing.last.bids.size).to eq 1
@@ -111,7 +119,7 @@ describe "Bidding process" do
 
         xit "should increase time if a successful bid is made" do
             create_listing
-            visit "/listing/1"
+            visit "/listings/1"
             click_on "Bid"
             user.bid(Listing.last)
             expect(Listing.last.bids.size).to eq 1
