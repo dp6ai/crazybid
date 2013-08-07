@@ -204,3 +204,6 @@ a.list-group-item.active .list-group-item-text {
 .admin-lists{
   cursor:pointer;
 }
+table.listings{
+  width:90%;
+}
