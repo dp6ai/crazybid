@@ -1,15 +1,20 @@
 require 'spec_helper'
 
+def create_listing_and_login_non_admin
+  create_user
+  create_admin
+  sign_in_admin
+  create_listing
+  signout
+  create_user_non_admin
+end
+
+
 describe "Bidding process" do
 
     context "bid button" do
         it 'should have a 6 bid buttons on the home page' do
-            create_user
-            create_admin
-            sign_in_admin
-            create_listing
-            signout
-            create_user_non_admin
+            create_listing_and_login_non_admin
             #sign_in_non_admin
             visit '/listings/1'
             expect(page).to have_content('Bid Now')
@@ -51,9 +56,10 @@ describe "Bidding process" do
 
         context "not signed up" do
 
-            xit "should redirect to login/signup if try to make a bid" do
-                visit '/listing/1'
-                click_on 'Bid'
+            it "should redirect to login/signup if try to make a bid" do
+                create_listing_and_login_non_admin
+                visit '/listings/1'
+                click_on 'Bid Now'
                 expect(current_path).to eq "/login" #or are we expecting a popup?
             end
 
