@@ -13,11 +13,40 @@
 		</tr>
 	</thead>
 		<tbody>
-		  <% @users.last(3).each do |user| %>
-		  	<tr class="admin-lists" onclick="document.location = '/admin/user/<%= user.id %>';" >
-		      <%= render 'user', user: user %>
-				 </tr>
-		  <% end %> 
+		  <td>
+	<%= @user.id %>
+</td>
+
+<td>
+	<%= @user.user_name %>
+</td>
+
+<td>
+	<%= @user.first_name %>
+</td>
+
+<td>
+	<%= @user.last_name %>
+</td>
+
+<td>
+	<%= @user.email %>
+</td>
+
+<td>
+	<%= @user.sign_in_count %>
+</td>
+
+<td>
+	<%= @user.last_sign_in_at %>
+</td>
+
+<td>
+	<%= @user.admin %>
+</td>
+
+
 		<tbody>
 	</table>
 </div>
+

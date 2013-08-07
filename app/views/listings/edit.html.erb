@@ -1,0 +1,28 @@
+<% @listing.errors.full_messages.each do |error| %>
+<p><%= error %></p>
+<% end %>
+
+
+<%= form_for(@listing) do |f| %>
+
+    <%= f.label :title %>
+    <%= f.text_field :title %>
+
+    <%= f.label :description %>
+    <%= f.text_area :description %>
+
+    <%= f.label :starting_price, "Starting price(p)" %>
+    <%= f.number_field :starting_price %>
+
+    <%= f.label :rrp, "RRP(p)" %>
+    <%= f.number_field :rrp %>
+
+    <%= f.label :time_per_bid, "Time per bid (s)" %>
+    <%= f.number_field :time_per_bid %>
+
+    <%= f.label :photo %>
+    <%= f.file_field :photo %>
+
+    <%= f.submit "Submit" %>
+    
+<% end %>

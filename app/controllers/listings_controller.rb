@@ -4,8 +4,9 @@ class ListingsController < ApplicationController
 
 
     def index
-        redirect_to '/admin' if is_admin?
-    	@listings = Listing.all
+        #redirect_to '/admin' if is_admin?
+      @listings = Listing.all
+      @users = User.all
     end
 
     include ListingsHelper
@@ -14,8 +15,23 @@ class ListingsController < ApplicationController
     def new
         @listing = Listing.new
     end
+    
+    def edit
+      redirect_to_homepage_unless_admin
+      @listing = Listing.find(params[:id])
+    end
+
+    def update
+      @listing = Listing.find(params[:id])
+      if @listing.update(params[:listing].permit(:title, :description, :starting_price, :rrp, :time_per_bid, :photo  ))
+        redirect_to @listing
+      else
+        render 'edit'
+      end
+    end
 
     def create
+        redirect_to_homepage_unless_admin
         @listing = Listing.create(params[:listing].permit(:title, :description, :starting_price, :rrp, :time_per_bid, :photo))
 
         if @listing.save  

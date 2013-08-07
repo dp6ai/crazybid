@@ -1,0 +1,32 @@
+puts @user.inspect
+
+<% @user.errors.full_messages.each do |error| %>
+<p><%= error %></p>
+<% end %>
+
+
+<h2>Edit <%= @user.user_name %></h2>
+
+<%= form_for @user do |f|  %>
+  <%# devise_error_messages! %>
+
+  <div><%= f.label :first_name %><br />
+  <%= f.text_field :first_name, :autofocus => true %></div>
+
+  <div><%= f.label :last_name %><br />
+  <%= f.text_field :last_name %></div>
+
+  <div><%= f.label :user_name %><br />
+  <%= f.text_field :user_name %></div>
+
+  <div><%= f.label :email %><br />
+  <%= f.email_field :email, :autofocus => true %></div>
+
+  <div><%= f.submit "Update" %></div>
+<% end %>
+
+<h3>Delete account</h3>
+<%# button_to "Delete account", registration_path(@user.id), :data => { :confirm => "Are you sure?" }, :method => :delete %>
+
+<%= link_to "Back", :back %>
+

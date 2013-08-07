@@ -1,0 +1,23 @@
+<div class="span12">
+	<table border="1"  class="table table-hover listings">
+		<thead
+		<tr>
+		<th>id</th>
+		<th>User Name</th>
+		<th>First</th>
+		<th>Last</th>
+		<th>Email</th>
+		<th>Sign In Count</th>
+		<th>Last Seen</th>
+		<th>Admin</th>
+		</tr>
+	</thead>
+		<tbody>
+		  <% @users.each do |user| %>
+		  	<tr class="admin-lists" onclick="document.location = '/users/<%= user.id %>/edit';" >
+		      <%= render 'admin_user', user: user %>
+				 </tr>
+		  <% end %> 
+		<tbody>
+	</table>
+</div>

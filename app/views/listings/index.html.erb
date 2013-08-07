@@ -1,4 +1,6 @@
-<%= render 'listings' if is_admin? %>
-<%= render 'admin_listings' if is_admin? %>
-
+<% if is_admin? %>
+	<%= render 'admin_index' %>
+<% else %>
+	<%= render 'listings'  %>
+<% end %>
 
