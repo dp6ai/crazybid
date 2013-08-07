@@ -26,8 +26,6 @@ def add_test_user
 end
 
 
-
-
 describe 'User not logged in' do
 	describe '/' do
 		it 'should not show the account link' do

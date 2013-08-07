@@ -58,12 +58,8 @@ else
 end
 
 def create_listing
-  #this method creates an admin and also a listing
-  create_admin
-  expect(User.count).to eq 1
-  expect(User.last.admin).to eq true
   visit '/listings/new'
-  puts page.html
+  #puts page.html
   expect(current_path).to eq '/listings/new'
   fill_in "Title", with: "Macbook"
   fill_in "Description", with: "this is a really nice macbook"
@@ -74,12 +70,27 @@ def create_listing
   click_on "Submit"
 end
 
-def logout_admin
+def signout
+  visit '/signout'
+end
+
+def sign_in_admin
+  visit "/signin"
+  fill_in "User name", with: "rob123"
+  fill_in "Password", with: "12345678"
+  click_on "Sign in"
+end
+
+def sign_in_non_admin
+  visit "/signin"
+  fill_in "User name", with: "bobby123"
+  fill_in "Password", with: "87654321"
+  click_on "Sign in"
 end
 
 def create_user
 #this method creates a user and logs it in
-    visit "/users/sign_up"
+    visit "/signup"
     fill_in "First name", with: "Bob"
     fill_in "Last name", with: "Johnson"
     fill_in "User name", with: "rob123"
@@ -87,10 +98,24 @@ def create_user
     fill_in "Password", with: "12345678"
     fill_in "Password confirmation", with: "12345678"
     click_on "Create my account"
+    create_admin
 end
 
+def create_user_non_admin
+#this method creates a user and logs it in
+    signout
+    visit "/signup"
+    fill_in "First name", with: "Bobby"
+    fill_in "Last name", with: "Jonny"
+    fill_in "User name", with: "bobby123"
+    fill_in "Email", with: "123@ex.com"
+    fill_in "Password", with: "87654321"
+    fill_in "Password confirmation", with: "87654321"
+    click_on "Create my account"
+end
+
+
 def create_admin
-    create_user
     last_user = User.last
     last_user.admin = true
     last_user.save

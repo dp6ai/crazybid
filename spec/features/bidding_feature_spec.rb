@@ -1,29 +1,37 @@
 require 'spec_helper'
 
-
-describe Bid do
+describe "Bidding process" do
 
     context "bid button" do
         it 'should have a 6 bid buttons on the home page' do
+            create_user
+            create_admin
+            sign_in_admin
             create_listing
-            create_listing
-            create_listing
-            create_listing
-            create_listing
-            create_listing
-            visit '/'
-            puts page.html
-            expect(page).to have_content('bid-button', count: 6)
+            signout
+            create_user_non_admin
+            #sign_in_non_admin
+            visit '/listings/1'
+            expect(page).to have_content('Bid Now')
         end
 
-        xit "should display the bid button on a current listing's page" do
+        it "should display the 6 bid buttons the listing's page" do
+            create_user
+            create_admin
+            sign_in_admin
             create_listing
-            visit '/listing/1'
-            expect(page).to have_css("button", text: "Bid") #can change the text/css
+            create_listing
+            create_listing
+            create_listing
+            create_listing
+            create_listing
+            signout
+            create_user_non_admin
+            #sign_in_non_admin
+            visit '/'
+            expect(page).to have_content("bid-button", count: 6) #can change the text/css
             #should show bid button even if not a user
         end
-
-
 
         xit "should not display the bid button on a coming soon listing page" do
             #add a coming soon listing
