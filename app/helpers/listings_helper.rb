@@ -1,7 +1,7 @@
 module ListingsHelper
 
   def is_admin?
-    current_user.admin==true
+    current_user && current_user.admin==true
   end
 
   def listing_auction_end(item)
