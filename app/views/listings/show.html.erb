@@ -1,34 +1,40 @@
+<div class="span10 listing-title">
+<h1><%=@listing.title%></h1>
+</div>
 
-<h2><%=@listing.title%></h2>
-
-<div class="span6">
+<div class="span3">
     <div class="listing-image">
         <%= image_tag("#{@listing.photo.url(:medium)}") %>
     </div>
 </div>
 
 
-<div class="span4 listing-details">
+<div class="span3 listing-details">
     <table>
         <tr>
-            <td>Price</td>
+
             <td><%= number_to_currency(@listing.current_price/100.0, precision: 2, unit: "&pound;") %></td>
         </tr>
-        <tr>
+<!--         <tr>
             <td>Finishing in</td>
             <td><%=@listing.start_date + @listing.duration %></td>
-        </tr>
-    </table>
+        </tr> -->
+    </table> 
     <button class="btn btn-primary btn-bid">Bid Now</button>
+    <div id="timer">
+    </div>
+   
+   
 </div>
 
 
-<div class="listing-description span12">
-  <p><%= @listing.description %></p>
+<div class="listing-description-block span10">
+    <div class="listing-description">
+        <p><%= @listing.description %></p>
+    </div>
 </div>
 
-<div id="timer">
-</div>
+
 
 
 
