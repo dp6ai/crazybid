@@ -1,42 +1,6 @@
 require 'spec_helper'
 
-def create_listing
-  #this method creates an admin and also a listing
-  create_admin
-  expect(User.count).to eq 1
-  expect(User.last.admin).to eq true
-  visit '/listings/new'
-  fill_in "Title", with: "Macbook"
-  fill_in "Description", with: "this is a really nice macbook"
-  fill_in "Starting price", with: 1
-  fill_in "RRP", with: 1340
-  fill_in "Time per bid", with: 10
-  page.attach_file("Photo", '/Users/jeremygoh/macbook.jpg')
-  click_on "Submit"
-end
 
-def logout_admin
-end
-
-def create_user
-#this method creates a user and logs it in
-    visit "/users/sign_up"
-    fill_in "First name", with: "Bob"
-    fill_in "Last name", with: "Johnson"
-    fill_in "User name", with: "rob123"
-    fill_in "Email", with: "1@ex.com"
-    fill_in "Password", with: "12345678"
-    fill_in "Password confirmation", with: "12345678"
-    click_on "Create my account"
-end
-
-def create_admin
-    create_user
-    last_user = User.last
-    last_user.admin = true
-    last_user.save
-    expect(User.last.admin).to eq true
-end
 
 fake_time = Time.new(2013,8,6, 8,30,0)
 

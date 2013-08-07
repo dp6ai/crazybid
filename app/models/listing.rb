@@ -11,7 +11,6 @@ class Listing < ActiveRecord::Base
     listing.duration = 86400
   end
 
-
-
+  has_many :bids
 end
 

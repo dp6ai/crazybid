@@ -1,8 +1,20 @@
 require 'spec_helper'
 
-describe "Bidding process" do
+
+describe Bid do
 
     context "bid button" do
+        it 'should have a 6 bid buttons on the home page' do
+            create_listing
+            create_listing
+            create_listing
+            create_listing
+            create_listing
+            create_listing
+            visit '/'
+            puts page.html
+            expect(page).to have_content('bid-button', count: 6)
+        end
 
         xit "should display the bid button on a current listing's page" do
             create_listing

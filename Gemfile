@@ -39,6 +39,7 @@ group :development, :test do
   gem 'guard-rspec'
   gem 'terminal-notifier-guard'
   gem 'shoulda-matchers'
+  gem 'factory_girl'
 end
 
 group :test do
