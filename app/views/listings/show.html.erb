@@ -24,7 +24,7 @@
             </div>
             <div class="listing-timer">
             </div>
-            <a href="/listings/<%= :listing_id %>/bids">Bid Now</a>
+            <a id="bid-<%= params[:id] %>" href="#">Bid Now</a>
             
         </div>
 
@@ -40,10 +40,27 @@
    
 
 </div>
-
-
-
 <script>
 $(".listing-timer").countdown({until:<%= (@listing.duration - (Time.now - @listing.start_date) ).to_i %> });
+
+<% if user_signed_in? %>
+$("#bid-<%= params[:id] %>").on("click", function(){
+    $.post('/listings/<%= params[:id] %>/bids', { user_id: "<%= current_user.id %>" })
+})
+<% else %>
+
+<% end %>
 </script>
+
+
+
+
+
+
+
+
+
+
+
+
 
