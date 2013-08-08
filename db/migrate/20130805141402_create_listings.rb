@@ -9,8 +9,7 @@ class CreateListings < ActiveRecord::Migration
       t.date :start_date
       t.string :time
       t.time :time_left
-      t.time :time_per_bid
-
+      t.integer :time_per_bid
       t.timestamps
     end
   end
