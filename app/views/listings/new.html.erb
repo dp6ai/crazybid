@@ -23,6 +23,13 @@
     <%= f.label :photo %>
     <%= f.file_field :photo %>
 
+    <%= f.label :active %>
+    <% if Listing.where(active: true).size >=6 %>
+        <%= f.check_box :active, disabled: true %>
+    <% else %>
+        <%= f.check_box :active %>
+    <% end %>
+
     <%= f.submit "Submit" %>
     
 <% end %>
