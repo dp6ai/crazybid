@@ -46,6 +46,11 @@ class ListingsController < ApplicationController
         @listing = Listing.find(params[:id])
     end
 
+
+    def active
+        render json: Listing.all, :only => [:id, :current_price], :methods => [:seconds_to_end]
+    end
+
     private
 
     def redirect_to_homepage_unless_admin

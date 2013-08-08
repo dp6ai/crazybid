@@ -2,7 +2,7 @@ Crazybid::Application.routes.draw do
   
   devise_for :users
   # resources :users
-  resources :listings do 
+  resources :listings, constraints: {id: /[0-9]+/} do 
     resources :bids
   end
   
@@ -20,6 +20,8 @@ Crazybid::Application.routes.draw do
     get "/signout" => "devise/sessions#destroy"
   end
   
+
+  get 'listings/active', to: 'listings#active'
  
 
   # match '/users/:id/edit' => 'users#edit', :as => :user, via: :get

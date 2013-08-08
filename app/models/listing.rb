@@ -18,5 +18,11 @@ class Listing < ActiveRecord::Base
   end
 
   has_many :bids
+
+  def seconds_to_end
+      (self.duration - (Time.now - self.start_date)).floor
+  end
+
+
 end
 
