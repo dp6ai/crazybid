@@ -1,5 +1,5 @@
 <script>
-$("#listing-timer-<%= listing.id %>").countdown({until:<%= (listing.duration - (Time.now - listing.start_date) ).to_i %> });
+//$("#listing-timer-<%= listing.id %>").countdown({until:<%= (listing.duration - (Time.now - listing.start_date) ).to_i %> });
 
 <% if user_signed_in? %>
 	$("#bid-<%= listing.id %>").on("click", function(){
@@ -9,15 +9,24 @@ $("#listing-timer-<%= listing.id %>").countdown({until:<%= (listing.duration - (
 
 <% end %>
 
+var get_listing_values = function(){
+	$.getJSON('/listings/active.json', function(listing) { 
+			$.each(listing, function(i, listing) {
+				//console.log("#listing-timer-" + listing.id)
+				//console.log(listing.current_price)
+				//$(listing.seconds_to_end).appendTo($("#listing-timer-" + listing.id));	
+				//$(listing.current_price).appendTo($("#listing-price-" + listing.id));	
 
-$.getJSON('/listings/active.json', function(listing) { 
-		$.each(listings, function(i, listing) {
-			$("#listing-timer-" + listing.id).appendTo($(listing.seconds_to_end));
-			$("#listing-price-" + listing.id).appendTo($(listing.current_price));
+				$("#listing-timer-" + listing.id).html(("Ending in: "+listing.seconds_to_end));
+				$("#listing-price-" + listing.id).html(("Highest bid: "+listing.current_price));
+				$("#listing-user-" + listing.current_winner).html(("Currently winning: "+listing.current_winner));
 
-		})
+
+			})
+	})
 }
 
+setInterval(get_listing_values,1000)
 
 </script>
 

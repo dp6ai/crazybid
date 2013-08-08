@@ -12,15 +12,16 @@
   <!-- List group -->
   <ul class="list-group">
     
-    <li class="list-group-item" id="listing-timer-<%= item.id %>"><%= listing_auction_end(item) %></li>
-    <li class="list-group-item" id="listing-price-<%= item.id %>"><%= item.current_price %></li>
-    <li class="list-group-item">  <% if user_signed_in? %>
-                <a id="bid-<%= item.id %>" href="#">Bid Now</a>
-            <% else %>
-                <a id="bid-button" href="/signin">Bid Now</a>
-            <% end %>
-</li>
-    <li class="list-group-item"><%= item_last_bid_user(item) %></li>
+    <li class="list-group-item" id="listing-timer-<%= item.id %>"></li>
+    <li class="list-group-item" id="listing-price-<%= item.id %>"></li>
+    <li class="list-group-item" id="listing-user-<%= item.id %>"></li>
+    <li class="list-group-item">  
+      <% if user_signed_in? %>
+        <a id="bid-<%= item.id %>" href="#">Bid Now</a>
+      <% else %>
+         <a id="bid-button" href="/signin">Bid Now</a>
+      <% end %>
+    </li>
   </ul>
 </div>
 
