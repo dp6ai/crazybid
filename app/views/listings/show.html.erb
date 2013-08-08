@@ -19,10 +19,14 @@
 
 
         <div class="span5 listing-details">
-            <div class="listing-price">
-                <%= number_to_currency(@listing.current_price/100.0, precision: 2, unit: "&pound;") %>
+            <div id="listing-price-<%= @listing.id%>">
+                Highest bid: --
             </div>
-            <div class="listing-timer">
+            <div id="listing-timer-<%= @listing.id%>">
+                Ending in: --
+            </div>
+            <div id="listing-user-<%= @listing.id%>">
+                Currently winning: --
             </div>
             <% if user_signed_in? %>
                 <a id="bid-<%= params[:id] %>" href="#">Bid Now</a>
