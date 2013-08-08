@@ -44,19 +44,8 @@
    
 
 </div>
-<script>
-$(".listing-timer").countdown({until:<%= (@listing.duration - (Time.now - @listing.start_date) ).to_i %> });
 
-<% if user_signed_in? %>
-$("#bid-<%= params[:id] %>").on("click", function(){
-    $.post('/listings/<%= params[:id] %>/bids', { user_id: "<%= current_user.id %>" })
-})
-<% else %>
-
-<% end %>
-</script>
-
-
+<%= render 'bid_js', listing: @listing %>
 
 
 

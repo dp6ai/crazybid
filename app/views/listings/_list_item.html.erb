@@ -12,9 +12,17 @@
   <!-- List group -->
   <ul class="list-group">
     
-    <li class="list-group-item"><%= listing_auction_end(item) %></li>
+    <li class="list-group-item" id="listing-timer-<%= item.id %>"><%= listing_auction_end(item) %></li>
     <li class="list-group-item"><%= item.current_price %></li>
-    <li class="list-group-item"><%= "bid-button" %></li>
-    <li class="list-group-item"><%= "USER" %></li>
+    <li class="list-group-item">  <% if user_signed_in? %>
+                <a id="bid-<%= item.id %>" href="#">Bid Now</a>
+            <% else %>
+                <a id="bid-button" href="/signin">Bid Now</a>
+            <% end %>
+</li>
+    <li class="list-group-item"><%= item_last_bid_user(item) %></li>
   </ul>
 </div>
+
+
+<%= render 'bid_js', listing: item  %>

@@ -1,0 +1,11 @@
+<script>
+$("#listing-timer-<%= listing.id %>").countdown({until:<%= (listing.duration - (Time.now - listing.start_date) ).to_i %> });
+
+<% if user_signed_in? %>
+$("#bid-<%= listing.id %>").on("click", function(){
+    $.post('/listings/<%= listing.id %>/bids', { user_id: "<%= current_user.id %>" })
+})
+<% else %>
+
+<% end %>
+</script>
