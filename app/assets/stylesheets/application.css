@@ -199,6 +199,7 @@ a.list-group-item.active .list-group-item-text {
 	font-size:1.2em;
 	padding-left:27px;
 	padding-bottom:6px;
+  max-width:200px;
 
 }
 .admin-lists{
