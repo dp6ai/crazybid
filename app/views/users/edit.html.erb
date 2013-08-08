@@ -1,7 +1,7 @@
-puts @user.inspect
+
 
 <% @user.errors.full_messages.each do |error| %>
-<p><%= error %></p>
+<p class="text-warning"><%= error %></p>
 <% end %>
 
 
@@ -21,6 +21,9 @@ puts @user.inspect
 
   <div><%= f.label :email %><br />
   <%= f.email_field :email, :autofocus => true %></div>
+
+  <div><%= f.label :credit %><br />
+  <%= f.number_field :credit %></div>
 
   <div><%= f.submit "Update" %></div>
 <% end %>

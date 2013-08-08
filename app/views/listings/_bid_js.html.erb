@@ -3,40 +3,15 @@
 
 <% if user_signed_in? %>
 	$("#bid-<%= listing.id %>").on("click", function(event){
-		event.preventDefault()
+		event.preventDefault();
     $.post('/listings/<%= listing.id %>/bids', { user_id: "<%= current_user.id %>" })
+    $.getJSON('/users/<%= current_user.id %>', function(credits){
+    	$('.user-credit-box').text(credits);
+
+    })
 	})
 <% else %>
 
 <% end %>
-
-var get_listing_values = function(){
-	$.getJSON('/listings/active.json', function(listing) { 
-			$.each(listing, function(i, listing) {
-				$("#listing-timer-" + listing.id).html(("Ending in: "+secondsToTime(listing.seconds_to_end)));
-				$("#listing-price-" + listing.id).html(("Highest bid: "+listing.current_price));
-				$("#listing-user-" + listing.id).html(("Currently winning: "+listing.current_winner));
-
-			})
-	})
-}
-
-
-function secondsToTime(secs)
-{
-    var hours = Math.floor(secs / (60 * 60));
-   
-    var divisor_for_minutes = secs % (60 * 60);
-    var minutes = Math.floor(divisor_for_minutes / 60);
- 
-    var divisor_for_seconds = divisor_for_minutes % 60;
-    var seconds = Math.ceil(divisor_for_seconds);
-   
-    var obj = hours + ":" + minutes + ":" + seconds
-    return obj;
-}
-
-setInterval(get_listing_values,1000)
-
 </script>
 
