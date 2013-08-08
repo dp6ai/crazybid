@@ -20,7 +20,14 @@ class BidsController < ApplicationController
 		@bid = Bid.new
 		@bid.user_id = params[:user_id]
 		@bid.listing=@listing
-		@bid.save
+		if @bid.save
+			@listing.current_price += 1
+			@listing.duration += @listing.time_per_bid
+			@listing.save
+		else
+			raise
+		end
+
 	end
 
 end

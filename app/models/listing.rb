@@ -10,7 +10,7 @@ class Listing < ActiveRecord::Base
                         :medium => "300x300>", 
                         :thumb => "100x100>" }, 
                     :default_url => "/images/:style/missing.png"
-  before_save do |listing| 
+  before_create do |listing| 
     listing.start_date = Time.now
     listing.default_end_date = Time.now + 86400 
     listing.current_price = listing.starting_price
