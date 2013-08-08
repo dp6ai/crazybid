@@ -13,7 +13,7 @@
   <ul class="list-group">
     
     <li class="list-group-item" id="listing-timer-<%= item.id %>"><%= listing_auction_end(item) %></li>
-    <li class="list-group-item"><%= item.current_price %></li>
+    <li class="list-group-item" id="listing-price-<%= item.id %>"><%= item.current_price %></li>
     <li class="list-group-item">  <% if user_signed_in? %>
                 <a id="bid-<%= item.id %>" href="#">Bid Now</a>
             <% else %>
