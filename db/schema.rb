@@ -11,7 +11,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20130808111913) do
+ActiveRecord::Schema.define(version: 20130808143138) do
 
   create_table "bids", force: true do |t|
     t.integer  "user_id"
@@ -40,6 +40,7 @@ ActiveRecord::Schema.define(version: 20130808111913) do
     t.integer  "photo_file_size"
     t.datetime "photo_updated_at"
     t.boolean  "active"
+    t.integer  "credits_per_bid"
   end
 
   create_table "users", force: true do |t|
@@ -59,6 +60,7 @@ ActiveRecord::Schema.define(version: 20130808111913) do
     t.string   "last_name"
     t.string   "user_name"
     t.boolean  "admin"
+    t.integer  "credit"
   end
 
   add_index "users", ["email"], name: "index_users_on_email", unique: true

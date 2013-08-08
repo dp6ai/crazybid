@@ -62,7 +62,7 @@
             <% if user_signed_in? %>
               <div class="nav pull-right panel">
                   <h5>Credits</h5>
-                  <a><%= link_to "176", "#" %></a> 
+                  <a href="#"><%= current_user.credit %></a> 
               </div>
             <% end %>
             <% if user_signed_in? %>
