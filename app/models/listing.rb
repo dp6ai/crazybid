@@ -23,6 +23,14 @@ class Listing < ActiveRecord::Base
       (self.duration - (Time.now - self.start_date)).floor
   end
 
+  def current_winner
+    if self.bids.empty?
+      ""
+    else
+      self.bids.last.user.user_name
+    end
+  end
+
 
 end
 
