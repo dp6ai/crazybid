@@ -49,7 +49,7 @@ class ListingsController < ApplicationController
 
 
     def active
-        render json: Listing.where(active: true).limit(6), :only => [:id, :current_price], :methods => [:seconds_to_end]
+        render json: Listing.where(active: true).limit(6), :only => [:id, :current_price], :methods => [:seconds_to_end, :current_winner]
     end
 
     private
