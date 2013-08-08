@@ -83,23 +83,31 @@ end
 describe 'User logged in' do
 	#before(:all){log_in_test_user}
 	describe '/' do
-		xit 'should greet a user' do
-			visit '/'
-			expect(page).to have_css('h2', text: 'Hi, User1')
+		it 'should greet a user' do
+			create_user_non_admin
+			signout
+			visit '/signin'
+			within("#new_user") do
+				fill_in('user_user_name', :with => 'bobby123')
+				fill_in('Password', :with => '87654321')
+			end
+			click_button('Sign')
+			expect(page).to have_content('Welcome back, Bobby')
 		end
-		xit 'should display the account link' do
+		it 'should display the account link' do
+			create_user_non_admin
 			visit '/'
-			click_link('Account')
-			expect(page).to have_title('Account')
+			expect(page).to have_content('Account')
 		end
-		xit 'should display the bank link' do
+		it 'should display the profile link' do
+			create_user_non_admin
 			visit '/'
-			click_link('Bank')
-			expect(page).to have_title('Bank')
+			expect(page).to have_content('Profile')
 		end
-		xit 'should diplay the log-out link' do
+		it 'should diplay the log-out link' do
+			create_user_non_admin
 			visit '/'
-			click_link('Log Out')
+			click_link('Sign Out')
 			expect(page).to have_no_css('h2', text: 'Hi, User1')
 		end
 		xit 'should show a credits item' do
