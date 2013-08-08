@@ -23,7 +23,7 @@ class ListingsController < ApplicationController
 
     def update
       @listing = Listing.find(params[:id])
-      if @listing.update(params[:listing].permit(:title, :description, :starting_price, :rrp, :time_per_bid, :photo  ))
+      if @listing.update(params[:listing].permit(:title, :description, :starting_price, :rrp, :time_per_bid, :photo, :active  ))
         redirect_to @listing
       else
         render 'edit'
@@ -32,7 +32,7 @@ class ListingsController < ApplicationController
 
     def create
         redirect_to_homepage_unless_admin
-        @listing = Listing.create(params[:listing].permit(:title, :description, :starting_price, :rrp, :time_per_bid, :photo))
+        @listing = Listing.create(params[:listing].permit(:title, :description, :starting_price, :rrp, :time_per_bid, :photo, :active))
 
         if @listing.save  
             redirect_to "/"
@@ -48,7 +48,7 @@ class ListingsController < ApplicationController
 
 
     def active
-        render json: Listing.all, :only => [:id, :current_price], :methods => [:seconds_to_end]
+        render json: Listing.where(active: true).limit(6), :only => [:id, :current_price], :methods => [:seconds_to_end]
     end
 
     private
