@@ -57,6 +57,13 @@ else
   raise "Don't know how to clear cookies. Weird driver?"
 end
 
+
+def create_listing_as_admin
+  create_admin
+  sign_in_admin
+  create_listing
+end
+
 def create_listing
   visit '/listings/new'
   #puts page.html
@@ -66,7 +73,8 @@ def create_listing
   fill_in "Starting price", with: 1
   fill_in "RRP", with: 1340
   fill_in "Time per bid", with: 10
-  page.attach_file("Photo", '/Users/dev/Documents/prog/makersacademy/crazybid/app/assets/images/macbook.jpg')
+  #page.attach_file("Photo", '/Users/dev/Documents/prog/makersacademy/crazybid/app/assets/images/macbook.jpg')
+  page.attach_file("Photo", '/Users/jeremygoh/macbook.jpg')
   click_on "Submit"
 end
 
