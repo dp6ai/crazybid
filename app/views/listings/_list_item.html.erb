@@ -12,9 +12,9 @@
   <!-- List group -->
   <ul class="list-group">
     
-    <li class="list-group-item" id="listing-timer-<%= item.id %>"></li>
-    <li class="list-group-item" id="listing-price-<%= item.id %>"></li>
-    <li class="list-group-item" id="listing-user-<%= item.id %>"></li>
+    <li class="list-group-item" id="listing-timer-<%= item.id %>">Ending in: --</li>
+    <li class="list-group-item" id="listing-price-<%= item.id %>">Highest bid: --</li>
+    <li class="list-group-item" id="listing-user-<%= item.id %>">Currently winning: --</li>
     <li class="list-group-item">  
       <% if user_signed_in? %>
         <a id="bid-<%= item.id %>" href="#">Bid Now</a>
