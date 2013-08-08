@@ -1,8 +1,7 @@
 require 'spec_helper'
 
 def create_listing_and_login_non_admin
-  create_user
-  create_admin
+  create_admin_user
   sign_in_admin
   create_listing
   signout
@@ -101,13 +100,21 @@ describe "Bidding process" do
 
     context "Success" do
 
-        xit "should add a bid if a successful bid is made" do
+        it "should add a bid if a successful bid is made" do
             create_listing_and_login_non_admin
+            signout
+            visit '/signin'
+            within("#new_user") do
+                fill_in('user_user_name', :with => 'bobby123')
+                fill_in('Password', :with => '87654321')
+            end
+            click_button('Sign')
             visit "/listings/1"
+            puts page.html
             click_on 'Bid Now'
             expect(Bid.all.count).to eq 1
-
         end
+
        xit "should increase price if a successful bid is made" do
             create_listing
             visit "/listings/1"

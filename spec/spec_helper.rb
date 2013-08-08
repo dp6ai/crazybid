@@ -109,6 +109,18 @@ def create_user
     create_admin
 end
 
+def create_admin_user
+    visit "/signup"
+    fill_in "First name", with: "Bob"
+    fill_in "Last name", with: "Johnson"
+    fill_in "User name", with: "rob123"
+    fill_in "Email", with: "1@ex.com"
+    fill_in "Password", with: "12345678"
+    fill_in "Password confirmation", with: "12345678"
+    click_on "Create my account"
+    create_admin
+end
+
 def create_user_non_admin
 #this method creates a user and logs it in
     signout
