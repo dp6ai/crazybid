@@ -12,7 +12,7 @@ describe "Listings" do
         context "as admin" do
 
             it "should allow an admin to create a listing" do
-                create_listing
+                create_listing_as_admin
                 expect(Listing.count).to eq 1
             end
 
@@ -21,7 +21,7 @@ describe "Listings" do
                 it "should automatically have the time left and current price saved
                 and also have the initial duration set to 24 hours from the current time" do
                     Time.stub(:now) { fake_time }
-                    create_listing
+                    create_listing_as_admin
                     Listing.last.current_price.should eq 1
                     Listing.last.start_date.should eq fake_time
                     Listing.last.duration.should eq 86400
@@ -29,14 +29,15 @@ describe "Listings" do
 
 
                 it "should have the new listing on the index" do
-                    create_listing
+                    create_listing_as_admin
                     visit '/'
                     expect(page).to have_content "Macbook"
                     expect(page).to have_content "1"
                 end
 
                 it "should have the new listing information on its own page which you can click through" do
-                    create_listing
+                    create_listing_as_admin
+                    create_user_non_admin
                     visit '/'
                     click_on "Macbook"
                     expect(current_path).to eq "/listings/#{Listing.last.id}"
@@ -46,6 +47,7 @@ describe "Listings" do
 
             it "shouldn't allow you to create a listing if not all forms filled in" do
                   create_admin
+                  sign_in_admin
                   visit '/listings/new'
                   click_on "Submit"
                   expect(Listing.count).not_to eq 1
@@ -59,6 +61,7 @@ describe "Listings" do
 
             it "shouldn't allow a listing to be created with negative number for rrp, starting price or time per bid" do
                 create_admin
+                sign_in_admin
                 visit '/listings/new'
                 fill_in "Title", with: "Macbook"
                 fill_in "Description", with: "this is a really nice macbook"
