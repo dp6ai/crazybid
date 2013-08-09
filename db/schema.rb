@@ -11,7 +11,10 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20130808143138) do
+ActiveRecord::Schema.define(version: 20130809095153) do
+
+  # These are extensions that must be enabled in order to support this database
+  enable_extension "plpgsql"
 
   create_table "bids", force: true do |t|
     t.integer  "user_id"
@@ -20,8 +23,8 @@ ActiveRecord::Schema.define(version: 20130808143138) do
     t.datetime "updated_at"
   end
 
-  add_index "bids", ["listing_id"], name: "index_bids_on_listing_id"
-  add_index "bids", ["user_id"], name: "index_bids_on_user_id"
+  add_index "bids", ["listing_id"], name: "index_bids_on_listing_id", using: :btree
+  add_index "bids", ["user_id"], name: "index_bids_on_user_id", using: :btree
 
   create_table "listings", force: true do |t|
     t.string   "title"
@@ -30,7 +33,6 @@ ActiveRecord::Schema.define(version: 20130808143138) do
     t.integer  "current_price"
     t.integer  "rrp"
     t.datetime "start_date"
-    t.time     "duration"
     t.integer  "time_per_bid"
     t.datetime "created_at"
     t.datetime "updated_at"
@@ -41,6 +43,7 @@ ActiveRecord::Schema.define(version: 20130808143138) do
     t.datetime "photo_updated_at"
     t.boolean  "active"
     t.integer  "credits_per_bid"
+    t.integer  "duration"
   end
 
   create_table "users", force: true do |t|
@@ -63,7 +66,7 @@ ActiveRecord::Schema.define(version: 20130808143138) do
     t.integer  "credit"
   end
 
-  add_index "users", ["email"], name: "index_users_on_email", unique: true
-  add_index "users", ["reset_password_token"], name: "index_users_on_reset_password_token", unique: true
+  add_index "users", ["email"], name: "index_users_on_email", unique: true, using: :btree
+  add_index "users", ["reset_password_token"], name: "index_users_on_reset_password_token", unique: true, using: :btree
 
 end
