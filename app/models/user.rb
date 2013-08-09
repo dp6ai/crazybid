@@ -5,7 +5,7 @@ class User < ActiveRecord::Base
   devise :database_authenticatable, :registerable,
          :recoverable, :rememberable, :trackable, :validatable,
          authentication_keys: [ :user_name ]
-  before_validation :set_initial_credits
+  # before_validation :set_initial_credits
 
   validates_numericality_of :credit, greater_than: -1
   has_many :bids

@@ -109,9 +109,22 @@
           var get_listing_values = function(){
             $.getJSON('/listings/active.json', function(listing) { 
                 $.each(listing, function(i, listing) {
-                  $("#listing-timer-" + listing.id).html(("Ending in: "+secondsToTime(listing.seconds_to_end)));
-                  $("#listing-price-" + listing.id).html(("Highest bid: "+listing.current_price));
-                  $("#listing-user-" + listing.id).html(("Currently winning: "+listing.current_winner));
+                  if (listing.seconds_to_end > 0)
+                  {
+                  var timerString = "Ending in: "+secondsToTime(listing.seconds_to_end);
+                  var priceString = "Highest bid: "+listing.current_price;
+                  var userString = "Currently winning: "+listing.current_winner;
+                  }
+                  else
+                  {
+                  var timerString = "Ended";
+                  var priceString = "Winning Bid: "+listing.current_price;
+                  var userString = "Winner: "+listing.current_winner;
+                  }                   
+
+                  $("#listing-timer-" + listing.id).html((timerString));
+                  $("#listing-price-" + listing.id).html((priceString));
+                  $("#listing-user-" + listing.id).html((userString));
                 })
             })
           }

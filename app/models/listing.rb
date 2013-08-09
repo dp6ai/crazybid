@@ -14,8 +14,9 @@ class Listing < ActiveRecord::Base
     listing.start_date = Time.now
     listing.default_end_date = Time.now + 86400 
     listing.current_price = listing.starting_price
-    listing.duration = 86400
+    # listing.duration = 86400
   end
+  attr_accessor :duration_human
 
   has_many :bids
 
@@ -30,6 +31,14 @@ class Listing < ActiveRecord::Base
       self.bids.last.user.user_name
     end
   end
+
+  # def duration_human=(end_date)
+  #   self.duration = (end_date - self.start_date).to_i
+  # end
+
+  # def duration_human
+  #   return (self.start_date + self.duration).to_i
+  # end
 
 
 end

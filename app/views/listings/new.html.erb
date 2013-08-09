@@ -20,8 +20,14 @@
     <%= f.label :time_per_bid, "Time per bid (s)" %>
     <%= f.number_field :time_per_bid %>
 
+    <%= f.label :credits_per_bid, "Credit per bid (p)" %>
+    <%= f.number_field :credits_per_bid %>
+
     <%= f.label :photo %>
     <%= f.file_field :photo %>
+
+     <%= f.label :duration_human %>
+    <%= f.datetime_select :duration_human %>
 
     <%= f.label :active %>
     <% if Listing.where(active: true).size >=6 %>
