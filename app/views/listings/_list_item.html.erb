@@ -1,27 +1,27 @@
-<div class="panel front-item">
+<div class="well well-front front-item">
   <!-- Default panel contents -->
-  <div class="panel-heading item-title"><h2 class="text-center item-heading"><%= item.title %></h2></div>
+  
   <div class="item-image">
   	<a href="/listings/<%=item.id%>">
   		<%= image_tag(item.photo.url(:square), :class => "img-responsive", :alt => "Responsive image") %> 
   	</a>
   </div>
-
+  <h2 class="item-title"><%= item.title %></h2>
   <p class="item-description"><%= truncate(item.description, length: 100) %></p>
 
   <!-- List group -->
-  <ul class="list-group">
-    <li class="list-group-item item-bid" id="listing-price-<%= item.id %>">Highest bid: <strong class="pull-right">--</strong></li>
-    <li class="list-group-item item-winning" id="listing-user-<%= item.id %>">Currently winning: <strong class="pull-right">--</strong></li>
-    <li class="list-group-item item-ending" id="listing-timer-<%= item.id %>">Ending in: <strong class="pull-right">--</strong></li>
+  <ul class="unstyled">
+    <li class="item-bid" id="listing-price-<%= item.id %>">Highest bid: <strong class="pull-right">--</strong></li>
+    <li class="item-winning" id="listing-user-<%= item.id %>">Currently winning: <strong class="pull-right">--</strong></li>
+    <li class="item-ending" id="listing-timer-<%= item.id %>">Ending in: <strong class="pull-right">--</strong></li>
 
 
-    <li class="list-group-item item-bid-button">  
-             <% if user_signed_in? %>
-                    <a class="btn btn-success home-button" id="bid-<%= item.id %>" href="#">Bid Now</a>
-             <% else %>
-                    <a class="btn btn-success listing-bid home-button" id="bid-button" href="/signin">Bid Now</a>
-             <% end %>
+    <li class=" item-bid-button">  
+<% if user_signed_in? %>
+<a class="btn btn-success home-button" id="bid-<%= item.id %>" href="#">Bid Now</a>
+<% else %>
+<a class="btn btn-success listing-bid home-button" id="bid-button" href="/signin">Bid Now</a>
+<% end %>
     </li>
   </ul>
 </div>

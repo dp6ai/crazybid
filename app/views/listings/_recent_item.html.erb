@@ -1,19 +1,15 @@
-<div class="panel">
-  <!-- Default panel contents -->
-  <div class="panel-heading item-title"><h2 class="text-center item-heading"><%= item.title %></h2></div>
+<div class="well well-front recent-item">
   <div class="item-image">
-  	<a href="/listings/<%=item.id%>">
-  		<%= image_tag(item.photo.url(:thumb), :class => "img-responsive", :alt => "Responsive image") %> 
-  	</a>
+    <a href="/listings/<%=item.id%>">
+      <%= image_tag(item.photo.url(:square), :class => "img-responsive", :alt => "Responsive image") %> 
+    </a>
   </div>
+  <h2 class="recent-title"><%= item.title %></h2>
  <!-- List group -->
-  <ul class="list-group">
-    <li class="list-group-item item-bid" id="listing-price-<%= item.id %>">Winning Bid: <strong class="pull-right">--</strong></li>
-    <li class="list-group-item item-winning" id="listing-user-<%= item.id %>">Winner: <strong class="pull-right">--</strong></li>
+  <ul class="unstyled">
+    <li class="recent-bid" id="listing-price-<%= item.id %>">Winning Bid: <strong class="pull-right">--</strong></li>
+    <li class="recent-winning" id="listing-user-<%= item.id %>">Winner: <strong class="pull-right">--</strong></li>
   </ul>
 </div>
 
 <%= render 'bid_js', listing: item  %>
-
-
-
