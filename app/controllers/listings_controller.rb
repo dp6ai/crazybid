@@ -1,6 +1,6 @@
 class ListingsController < ApplicationController
     #before_filter :authenticate_user!
-    before_filter :redirect_to_homepage_unless_admin, only: [:new, :create]
+    before_filter :redirect_to_homepage_unless_admin, only: [:new, :create, :update]
 
 
     def index
