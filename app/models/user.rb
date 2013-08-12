@@ -10,7 +10,8 @@ class User < ActiveRecord::Base
   validates_numericality_of :credit, greater_than: -1
   has_many :bids
 
-  before_create do |user|
+  before_validation(on: :create) do |user|
+    puts user.credit
     user.credit = 0
   end
 

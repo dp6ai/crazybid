@@ -54,11 +54,7 @@ class ListingsController < ApplicationController
 
         params[:listing][:duration] = converted_duration
         @listing = Listing.new(params[:listing].permit(:title, :description, :starting_price, :rrp, :time_per_bid, :photo, :active, :credits_per_bid, :duration))
-        # puts duration_human_modified.inspect
-        # puts edited_params.inspect
-        # @listing =Listing.new(edited_params)
-        # .permit(:title, :description, :starting_price, :rrp, :time_per_bid, :photo, :active, :credits_per_bid, :duration)
-     
+
         if @listing.save  
             redirect_to "/"
         else
