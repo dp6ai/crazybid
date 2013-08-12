@@ -7,6 +7,8 @@ class ListingsController < ApplicationController
         #redirect_to '/admin' if is_admin?
       @listings = Listing.all
       @active_listings = Listing.where(active: true)
+      @recent_listings = Listing.where(active: true)
+      @coming_listings = Listing.where(active: true)
       @users = User.all
     end
 

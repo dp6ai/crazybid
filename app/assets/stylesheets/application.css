@@ -104,6 +104,10 @@ a.list-group-item.active .list-group-item-text {
 
 }
 
+.front-item:hover{
+  border: 1px solid #000;
+}
+
 .panel .list-group {
   margin: 15px -15px -15px;
 }

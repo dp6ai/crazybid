@@ -1,0 +1,8 @@
+<div class="row-fluid">
+<h2>Coming Auctions</h2>
+  <% @coming_listings.pop(6).each do |coming_item| %>
+    <div class="span2">
+      <%= render 'coming_item', item: coming_item %>
+    </div>
+  <% end %> 
+</div>

@@ -1,0 +1,8 @@
+<div class="row-fluid">
+<h2>Recent Auctions</h2>
+  <% @recent_listings.pop(6).each do |recent_item| %>
+    <div class="span2">
+      <%= render 'recent_item', item: recent_item %>
+    </div>
+  <% end %> 
+</div>
