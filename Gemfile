@@ -32,6 +32,7 @@ gem 'turbolinks'
 # Build JSON APIs with ease. Read more: https://github.com/rails/jbuilder
 gem 'jbuilder', '~> 1.2'
 
+gem 'seed_dumper'
 #Adding web sockets to app
 gem 'websocket-rails'
 group :doc do
@@ -45,6 +46,7 @@ group :development, :test do
   gem 'terminal-notifier-guard'
   gem 'shoulda-matchers'
   gem 'factory_girl'
+
 end
 
 group :test do
