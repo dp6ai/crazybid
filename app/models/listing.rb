@@ -4,9 +4,8 @@ class Listing < ActiveRecord::Base
   validates_numericality_of :starting_price, :rrp, :time_per_bid, greater_than: 0
   has_attached_file :photo, 
                     :styles => { 
-                        :square =>  ' -background white -compose Copy -gravity center -extent x300"',
-
-        
+                        # :square =>  ' -background white -compose Copy -gravity center -extent 377x255"',        
+                        :square =>  "377x255#",  
                         :medium => "300x300>", 
                         :thumb => "100x100>" }, 
                     :default_url => "/images/:style/missing.png"

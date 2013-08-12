@@ -13,6 +13,15 @@
  *= require bootstrap_and_overrides
  */
 
+ .item-heading{
+  line-height:10px;
+  font-size:2.0em;
+  font-weight:normal;
+ }
+
+.navbar-inner{
+  background-color: #fafafa;
+}
 
 .list-group {
   padding-left: 0;
@@ -190,9 +199,45 @@ a.list-group-item.active .list-group-item-text {
   background-color: #d9edf7;
   border-color: #bce8f1;
 }
+.panel-heading {
+background-color: #EBEBEB;
+}
+.item-title{
+  padding-left: 40px;
+  padding-right: 20px;
+  color:#666666;
+}
 .item-image{
 	/*height:300px;*/
-
+padding-top: 10px;
+padding-left: 20px;
+padding-right: 20px;
+padding-bottom: 10px;
+}
+.item-description{
+  font-size:0.8em;
+  color:#999;
+  padding-left: 20px;
+padding-right: 20px;
+}
+.item-bid{
+    margin-left: 20px;
+margin-right: 20px;
+}
+.item-winning{
+    margin-left: 20px;
+margin-right: 20px;
+}
+.item-ending{
+    margin-left: 20px;
+margin-right: 20px;
+}
+.item-bid-button{
+    margin-left: 20px;
+margin-right: 20px;
+}
+.home-button{
+  width:100%;
 }
 .welcome{
 	color:grey;

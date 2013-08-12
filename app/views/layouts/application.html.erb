@@ -48,7 +48,7 @@
           </a>
           <a class="brand" href="/">Crazybid</a>
           <div class="container-fluid nav-collapse">
-            <ul class="nav">
+            <ul class="nav pull-right">
             	<% if user_signed_in? %>
               	<li><%= link_to "Profile", "/users/edit"  %></li>
               	<li><%= link_to "Account", "/path2"  %></li>
@@ -106,20 +106,21 @@
               return obj;
           }
 
+
           var get_listing_values = function(){
             $.getJSON('/listings/active.json', function(listing) { 
                 $.each(listing, function(i, listing) {
                   if (listing.seconds_to_end > 0)
                   {
-                  var timerString = "Ending in: "+secondsToTime(listing.seconds_to_end);
-                  var priceString = "Highest bid: "+listing.current_price;
-                  var userString = "Currently winning: "+listing.current_winner;
+                  var timerString = "Ending in: <strong class='pull-right'>"+secondsToTime(listing.seconds_to_end)+"</strong>";
+                  var priceString = "Highest bid: <strong class='pull-right'>"+parseFloat(Math.round(listing.current_price * 1) / 100).toFixed(2)+"</strong>";
+                  var userString = "Currently winning: <strong class='pull-right'>"+listing.current_winner+"</strong>";
                   }
                   else
                   {
                   var timerString = "Ended";
-                  var priceString = "Winning Bid: "+listing.current_price;
-                  var userString = "Winner: "+listing.current_winner;
+                  var priceString = "Winning Bid: <strong class='pull-right'>"+parseFloat(Math.round(listing.current_price * 1) / 100).toFixed(2)+"</strong>";
+                  var userString = "Winner: <strong class='pull-right'>"+listing.current_winner+"</strong>";
                   }                   
 
                   $("#listing-timer-" + listing.id).html((timerString));
