@@ -1,17 +1,12 @@
 <script>
-
-
 <% if user_signed_in? %>
 	$("#bid-<%= listing.id %>").on("click", function(event){
 		event.preventDefault();
     $.post('/listings/<%= listing.id %>/bids', { user_id: "<%= current_user.id %>" })
     $.getJSON('/users/<%= current_user.id %>', function(credits){
     	$('.user-credit-box').text(credits);
-
     })
 	})
-<% else %>
-
 <% end %>
 </script>
 

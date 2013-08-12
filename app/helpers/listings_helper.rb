@@ -7,4 +7,5 @@ module ListingsHelper
   def listing_auction_end(item)
   	(item.start_date + item.duration).strftime(format='%H:%M:%S') 
   end
+  
 end

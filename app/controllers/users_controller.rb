@@ -3,13 +3,12 @@ class UsersController < ApplicationController
 	before_filter :authenticate_user!
   before_filter :redirect_unless_admin
 
-
   def show
-      @user = User.find(params[:id])
-      respond_to do |format|
-        format.html # show.html.erb
-        format.json { render :json => @user.credit }
-      end
+    @user = User.find(params[:id])
+    respond_to do |format|
+      format.html # show.html.erb
+      format.json { render :json => @user.credit }
+    end
   end
 
   def new

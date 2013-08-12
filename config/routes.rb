@@ -5,7 +5,6 @@ Crazybid::Application.routes.draw do
   resources :listings, constraints: {id: /[0-9]+/} do 
     resources :bids
   end
-
  
   resources :users
   # The priority is based upon order of creation: first created -> highest priority.
@@ -20,14 +19,11 @@ Crazybid::Application.routes.draw do
     get "/signin" => "devise/sessions#new"
     get "/signout" => "devise/sessions#destroy"
   end
-  
 
   get 'listings/active', to: 'listings#active'
- 
 
   # match '/users/:id/edit' => 'users#edit', :as => :user, via: :get
   #match '/users/:id' => 'users#update', :as => :user, via: :put
-
 
   #match '/users/:id', :to => 'users#show', :as => :users
 

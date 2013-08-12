@@ -1,5 +1,4 @@
 <div class="row-fluid">
-
   <% @active_listings.pop(3).each do |listing| %>
     <div class="span4">
       <%= render 'list_item', item: listing %>
@@ -7,7 +6,6 @@
   <% end %> 
 </div>
 <div class="row-fluid">
-
   <% @active_listings.pop(3).each do |listing| %>
     <div class="span4">
       <%= render 'list_item', item: listing %>

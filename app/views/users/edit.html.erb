@@ -1,9 +1,6 @@
-
-
 <% @user.errors.full_messages.each do |error| %>
-<p class="text-warning"><%= error %></p>
+  <p class="text-warning"><%= error %></p>
 <% end %>
-
 
 <h2>Edit <%= @user.user_name %></h2>
 
@@ -25,10 +22,10 @@
   <div><%= f.label :credit %><br />
   <%= f.number_field :credit %></div>
 
-<% if is_admin? %>
-  <div><%= f.label :disabled %><br />
-  <%= f.check_box :disabled %></div>
-<% end %>
+  <% if is_admin? %>
+    <div><%= f.label :disabled %><br />
+    <%= f.check_box :disabled %></div>
+  <% end %>
 
   <div><%= f.submit "Update" %></div>
 <% end %>

@@ -31,14 +31,5 @@ class Listing < ActiveRecord::Base
     end
   end
 
-  # def duration_human=(end_date)
-  #   self.duration = (end_date - self.start_date).to_i
-  # end
-
-  # def duration_human
-  #   return (self.start_date + self.duration).to_i
-  # end
-
-
 end
 

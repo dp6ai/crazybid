@@ -5,13 +5,9 @@
     </a>
   </div>
   <h2 class="coming-title"><%= item.title %></h2>
-
- <!-- List group -->
   <ul class="unstyled">
     <li class="coming-bid" id="listing-price-<%= item.id %>">Winning Bid: <strong class="pull-right">--</strong></li>
     <li class="coming-winning" id="listing-user-<%= item.id %>">Winner: <strong class="pull-right">--</strong></li>
   </ul>
 </div>
-
-
 <%= render 'bid_js', listing: item  %>

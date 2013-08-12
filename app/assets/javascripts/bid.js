@@ -9,10 +9,3 @@
 //     // $('listing-'+ listing.id + ' .price').text(listing.price)
 //   })
 
-
-
-    				// WebSocketRails[:bids].trigger 'new',{
-								// id: @listing.id, 
-								// current_price: @listing.current_price, 
-								// current_winner: @listing.bids.last.user
-								// }

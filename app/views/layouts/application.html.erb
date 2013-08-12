@@ -93,47 +93,42 @@
     </div> <!-- /container -->
     <script>
       function secondsToTime(secs)
+        {
+          var hours = Math.floor(secs / (60 * 60));
+             
+          var divisor_for_minutes = secs % (60 * 60);
+          var minutes = Math.floor(divisor_for_minutes / 60);
+
+          var divisor_for_seconds = divisor_for_minutes % 60;
+          var seconds = Math.ceil(divisor_for_seconds);
+             
+          var obj = hours + ":" + minutes + ":" + seconds
+          return obj;
+        }
+
+      var dispatcher = new WebSocketRails('localhost:3000/websocket')
+
+      channel = dispatcher.subscribe('bids');
+
+      channel.bind('new', function(listing){
+        if (listing.seconds_to_end > 0)
           {
-              var hours = Math.floor(secs / (60 * 60));
-             
-              var divisor_for_minutes = secs % (60 * 60);
-              var minutes = Math.floor(divisor_for_minutes / 60);
-           
-              var divisor_for_seconds = divisor_for_minutes % 60;
-              var seconds = Math.ceil(divisor_for_seconds);
-             
-              var obj = hours + ":" + minutes + ":" + seconds
-              return obj;
+            var timerString = "Ending in: <strong class='pull-right'>"+secondsToTime(listing.seconds_to_end)+"</strong>";
+            var priceString = "Highest bid: <strong class='pull-right'>"+parseFloat(Math.round(listing.current_price * 1) / 100).toFixed(2)+"</strong>";
+            var userString = "Currently winning: <strong class='pull-right'>"+listing.current_winner+"</strong>";
           }
+          else
+          {
+            var timerString = "Ended";
+            var priceString = "Winning Bid: <strong class='pull-right'>"+parseFloat(Math.round(listing.current_price * 1) / 100).toFixed(2)+"</strong>";
+            var userString = "Winner: <strong class='pull-right'>"+listing.current_winner+"</strong>";
+          }                   
 
+          $("#listing-timer-" + listing.id).html((timerString));
+          $("#listing-price-" + listing.id).html((priceString));
+          $("#listing-user-" + listing.id).html((userString));
 
-
-          var dispatcher = new WebSocketRails('localhost:3000/websocket')
-
-
-          channel = dispatcher.subscribe('bids');
-
-          channel.bind('new', function(listing){
-          if (listing.seconds_to_end > 0)
-                            {
-                            var timerString = "Ending in: <strong class='pull-right'>"+secondsToTime(listing.seconds_to_end)+"</strong>";
-                            var priceString = "Highest bid: <strong class='pull-right'>"+parseFloat(Math.round(listing.current_price * 1) / 100).toFixed(2)+"</strong>";
-                            var userString = "Currently winning: <strong class='pull-right'>"+listing.current_winner+"</strong>";
-                            }
-                            else
-                            {
-                            var timerString = "Ended";
-                            var priceString = "Winning Bid: <strong class='pull-right'>"+parseFloat(Math.round(listing.current_price * 1) / 100).toFixed(2)+"</strong>";
-                            var userString = "Winner: <strong class='pull-right'>"+listing.current_winner+"</strong>";
-                            }                   
-
-                            $("#listing-timer-" + listing.id).html((timerString));
-                            $("#listing-price-" + listing.id).html((priceString));
-                            $("#listing-user-" + listing.id).html((userString));
-           
-            })
-
-
+          })
 
           // var get_listing_values = function(){
           //   $.getJSON('/listings/active.json', function(listing) { 
@@ -161,9 +156,6 @@
           // $(document).ready(function(){
           //   setInterval(get_listing_values,1000);
           // });
-          
-
-
     </script>
   </body>
 </html>

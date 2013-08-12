@@ -109,8 +109,6 @@ a.list-group-item.active .list-group-item-text {
 
 }
 
-
-
 .front-item:hover{
   border: 1px solid #000;
 }
@@ -210,24 +208,29 @@ a.list-group-item.active .list-group-item-text {
   background-color: #d9edf7;
   border-color: #bce8f1;
 }
+
 .panel-heading {
 background-color: #EBEBEB;
 }
+
 .item-title{
   margin-left: 20px;
   margin-right: 20px;
   color:#666666;
 }
+
 .coming-title{
   font-size:1.3em;
   color:#666666;
   font-weight: normal
 }
+
 .recent-title{
   font-size:1.3em;
   color:#666666;
   font-weight: normal
 }
+
 .item-image{
 	/*height:300px;*/
 
@@ -239,51 +242,63 @@ padding-top: 0px;
 padding-left: 0px;
 padding-right: 0px;
 }
+
 .recent-image{
 padding-top: 0px;
 padding-left: 0px;
 padding-right: 0px;
 }
+
 .item-description{
   font-size:0.8em;
   color:#999;
   padding-left: 20px;
 padding-right: 20px;
 }
+
 .item-bid{
     margin-left: 20px;
 margin-right: 20px;
 }
+
 .coming-bid{
     margin-left: 0px;
 margin-right: 0px;
 }
+
 .recent-bid{
     margin-left: 0px;
 margin-right: 0px;
 }
+
 .item-winning{
     margin-left: 20px;
 margin-right: 20px;
 }
+
 .coming-winning{
     margin-left: 0px;
 margin-right: 0px;
 }
+
 .recent-winning{
     margin-left: 0px;
 margin-right: 0px;
 }
+
 .item-ending{
     margin-left: 20px;
 margin-right: 20px;
 }
+
 .item-bid-button{
   text-align:center;
 }
+
 .home-button{
   width:80%;
 }
+
 .welcome{
 	color:grey;
 	font-size:1.2em;
@@ -292,9 +307,11 @@ margin-right: 20px;
   max-width:200px;
 
 }
+
 .admin-lists{
   cursor:pointer;
 }
+
 table.listings{
   width:90%;
 }
