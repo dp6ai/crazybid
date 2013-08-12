@@ -17,5 +17,9 @@ class User < ActiveRecord::Base
   def set_initial_credits
     self.credit=0
   end
+
+  def active_for_authentication?
+    super && !(self.disabled)
+  end
   
 end
