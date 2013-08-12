@@ -11,7 +11,6 @@ class User < ActiveRecord::Base
   has_many :bids
 
   before_validation(on: :create) do |user|
-    puts user.credit
     user.credit = 0
   end
 
