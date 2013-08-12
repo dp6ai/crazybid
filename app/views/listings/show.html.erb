@@ -1,53 +1,54 @@
-        
-<div class="span8 offset2 listing-container">
-    
+<div class="listing-container">
+
     <div class="row-fluid">
-
-        <div class="span8 listing-title">
-        <h1><%=@listing.title%></h1>
+        <div class="span6 offset3">
+            <h1 class="listing-title"><%= @listing.title %></h1>
         </div>
-
     </div>
 
     <div class="row-fluid">
 
-        <div class="span5">
-            <div class="listing-image">
-                <%= image_tag("#{@listing.photo.url(:medium)}") %>
-            </div>
+        <div class="span2 offset3 listing-image">
+            <%= image_tag("#{@listing.photo.url(:medium)}") %>
         </div>
 
+        <div class="span3 offset1 well listing-box">
 
-        <div class="span5 listing-details">
-            <div id="listing-price-<%= @listing.id%>">
-                Highest bid: --
+            <div class="left listing-box-left">
+                <p id="listing-price-<%= @listing.id%>" class="listing-price">Highest bid: -- </p>
+                <p id="listing-timer-<%= @listing.id%>" class="listing-timer">Ending in: -- </p>
             </div>
-            <div id="listing-timer-<%= @listing.id%>">
-                Ending in: --
-            </div>
-            <div id="listing-user-<%= @listing.id%>">
-                Currently winning: --
-            </div>
-            <% if user_signed_in? %>
-                <a id="bid-<%= params[:id] %>" href="#">Bid Now</a>
-            <% else %>
-                <a id="bid-button" href="/signin">Bid Now</a>
-            <% end %>
-            
-        </div>
 
-     </div>
+            <div class="right listing-box-right">
+                <p id="listing-user-<%= @listing.id%>" class="listing-winner">Currently winning: -- </p>
+                 <% if user_signed_in? %>
+                        <a class="btn btn-success" id="bid-<%= params[:id] %>" href="#">Bid Now</a>
+                 <% else %>
+                        <a class="btn btn-success listing-bid" id="bid-button" href="/signin">Bid Now</a>
+                 <% end %>
+            </div>
+
+        </div> 
+
+    </div>
+
+
 
      <div class="row-fluid">
-        <div class="listing-description-block span8">
-            <div class="listing-description">
-                <p><%= @listing.description %></p>
-            </div>
+        <div class="span6 offset3 well listing-description">
+            <p><%= @listing.description %>
         </div>
-    </div>
-   
+    </div>    
 
 </div>
+
+
+          
+
+
+
+
+
 
 <%= render 'bid_js', listing: @listing %>
 

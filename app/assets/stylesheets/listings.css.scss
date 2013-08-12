@@ -2,67 +2,75 @@
 // They will automatically be included in application.css.
 // You can use Sass (SCSS) here: http://sass-lang.com/
 
-.listing-container{
 
-  font-size: 15px;
+
+.listing-title{
+  font-size: 50px;
+  padding-top: 20px;
+  padding-bottom: 25px;
+  border-bottom: 1px solid #B3AFAF;
 }
 
-.listing-title h1{
-  margin-left: 65px;
-  margin-bottom: 40px;
-  margin-top: 25px;
+.listing-image{
+  padding-top: 30px;
+
 }
 
-.listing-details{
-  border: 1px solid black;
-  border-radius: 15px;
-  height: 275px;
-  width: 100%;
-  background-color: #eee;
+
+
+.left{
+  float: left;
+}
+
+.right{
+  float: right;
 }
 
 .listing-price{
-  display: inline-block;
-  font-size: 20px;
-  margin-left: 30px;
-  font-weight: bold;
+  font-size: 17px;
 }
 
 .listing-timer{
-  display: inline-block;
-  margin-left: 50px;
+  font-size: 17px;
 }
 
-.btn-bid{
-  font-size: 20px;
-  padding: 10px;
-  background-image: none;
-  background-color: #3B5998;
-  color: white;
-  display: block;
-  margin: auto;
-  margin-top: 50px;
+.listing-box-left{
+  line-height: 1.5;
+}
+.listing-box-right{
+  margin-right: 50px;
 }
 
-.btn-bid:hover{
-  background-color: #3B5998;;
+.listing-bid{
+  margin-top: 7px;
 }
 
+.listing-winner{
+  font-size: 17px;
+  margin-top: 3px;
+}
 
-.listing-description-block{
-  border-radius: 13px;
-  height: 300px;
-  margin: auto;
+.listing-box{
+  margin-top: 40px;
 }
 
 .listing-description{
-  padding: 20px;
+  font-size: 15px;
+  line-height: 3;
+  margin-top: 50px;
+
 }
 
-.listing-timer{
-  background-color: #eee;
-  width: 170px;
+.well{
+  background-color: #FCFCFC;
 }
+
+
+
+
+
+
+
 
 
 
