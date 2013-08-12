@@ -15,12 +15,12 @@
         <div class="span3 offset1 well listing-box">
 
             <div class="left listing-box-left">
-                <p id="listing-price-<%= @listing.id%>" class="listing-price">Highest bid: -- </p>
-                <p id="listing-timer-<%= @listing.id%>" class="listing-timer">Ending in: -- </p>
+                <p id="listing-price-<%= @listing.id%>" class="listing-price">Highest bid: <%= number_to_currency((@listing.current_price) /100.0, unit: '£') %> </p>
+                <p id="listing-timer-<%= @listing.id%>" class="listing-timer">Ending in: <%= Time.at(@listing.seconds_to_end).utc.strftime("%H:%M:%S") %> </p>
             </div>
 
             <div class="right listing-box-right">
-                <p id="listing-user-<%= @listing.id%>" class="listing-winner">Currently winning: -- </p>
+                <p id="listing-user-<%= @listing.id%>" class="listing-winner">Currently winning: <%= @listing.current_winner %> </p>
                  <% if user_signed_in? %>
                         <a class="btn btn-success" id="bid-<%= params[:id] %>" href="#">Bid Now</a>
                  <% else %>

@@ -5,7 +5,8 @@ Crazybid::Application.routes.draw do
   resources :listings, constraints: {id: /[0-9]+/} do 
     resources :bids
   end
-  
+
+ 
   resources :users
   # The priority is based upon order of creation: first created -> highest priority.
   # See how all your routes lay out with "rake routes".
@@ -80,3 +81,4 @@ Crazybid::Application.routes.draw do
   #     resources :products
   #   end
 end
+

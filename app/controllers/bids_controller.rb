@@ -16,15 +16,13 @@ class BidsController < ApplicationController
 			format.json { render json: @bid }
 		end
 
-
 		user = User.find(params[:user_id])
-		puts user.inspect
 		@listing = Listing.find(params[:listing_id])
 
-		if user.credit < @listing.credits_per_bid
-			redirect_to "/users/edit"
-			puts "no more credits" #change this to some failure response
-		else
+		# if user.credit < @listing.credits_per_bid
+		# 	redirect_to "/users/edit"
+		# 	puts "no more credits" #change this to some failure response
+		# else
 					@bids = Bid.all
 					@bid = Bid.new
 					@bid.user_id = params[:user_id]
@@ -36,10 +34,18 @@ class BidsController < ApplicationController
 						@listing.save
 						user.credit -= @listing.credits_per_bid
 						user.save
+						WebsocketRails[:bids].trigger 'new',{
+								id: @listing.id, 
+								current_price: @listing.current_price, 
+								current_winner: @listing.bids.last.user.user_name,
+								seconds_to_end: @listing.seconds_to_end
+
+								}
+							puts "XXXXXXXX #{@listing.seconds_to_end}"
 					else
 						raise #change this to some failure response
 					end
-		end
+		# end
 	end
 
 end
