@@ -8,13 +8,13 @@
     <div class="span2 offset3 listing-image">
       <%= image_tag("#{@listing.photo.url(:medium)}") %>
     </div>
-    <div class="span3 offset1 well listing-box">
+    <div class="span5 offset1 well listing-box">
       <div class="left listing-box-left">
-        <p id="listing-price-<%= @listing.id%>" class="listing-price">Highest bid: <%= number_to_currency((@listing.current_price) /100.0, unit: '£') %> </p>
-        <p id="listing-timer-<%= @listing.id%>" class="listing-timer">Ending in: <%= Time.at(@listing.seconds_to_end).utc.strftime("%H:%M:%S") %> </p>
+        <p id="listing-price-<%= @listing.id%>" class="listing-price">Highest bid: <strong><%= number_to_currency((@listing.current_price) /100.0, unit: '£') %></strong> </p>
+        <p id="listing-timer-<%= @listing.id%>" class="listing-timer">Ending in:  </p>
       </div>
       <div class="right listing-box-right">
-        <p id="listing-user-<%= @listing.id%>" class="listing-winner">Currently winning: <%= @listing.current_winner %> </p>
+        <p id="listing-user-<%= @listing.id%>" class="listing-winner">Currently winning: <strong><%= @listing.current_winner %></strong> </p>
         <% if user_signed_in? %>
           <a class="btn btn-success" id="bid-<%= params[:id] %>" href="#">Bid Now</a>
         <% else %>
@@ -30,3 +30,17 @@
   </div>    
 </div>
 <%= render 'bid_js', listing: @listing %>
+<script>
+
+ timer((<%= @listing.seconds_to_end %> * 1000),
+            function(timeleft) 
+            {
+              document.getElementById("listing-timer-" + <%= @listing.id %>).innerHTML = "Ending in: <strong class='pull-right'>"+timeleft+"</strong>";
+            },
+            function()
+            {
+              document.getElementById("listing-timer-" + <%= @listing.id %>).innerHTML = "Ended";
+            },
+            <%= @listing.id %>)
+ 
+</script>

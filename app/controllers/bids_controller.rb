@@ -29,7 +29,8 @@ class BidsController < ApplicationController
 			@listing.save
 			user.credit -= @listing.credits_per_bid
 			user.save
-			WebsocketRails[:bids].trigger 'new',{
+			
+			websocket_helper[:bids].trigger 'new',{
 				id: @listing.id, 
 				current_price: @listing.current_price, 
 				current_winner: @listing.bids.last.user.user_name,

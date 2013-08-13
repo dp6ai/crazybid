@@ -4,6 +4,14 @@ class ApplicationController < ActionController::Base
   protect_from_forgery with: :exception
   before_filter :configure_permitted_parameters, if: :devise_controller?
 
+	def websocket_helper
+		if defined?(WebsocketRails)
+			WebsocketRails
+		else
+			Pusher
+		end
+	end
+
  protected
 
   def configure_permitted_parameters
@@ -11,3 +19,4 @@ class ApplicationController < ActionController::Base
     devise_parameter_sanitizer.for(:sign_in) { |u| u.permit(:user_name, :password, :remember_me) }
   end
 end
+

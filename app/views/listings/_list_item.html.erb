@@ -9,7 +9,7 @@
   <ul class="unstyled">
     <li class="item-bid" id="listing-price-<%= item.id %>">Highest bid: <strong class="pull-right">--</strong></li>
     <li class="item-winning" id="listing-user-<%= item.id %>">Currently winning: <strong class="pull-right">--</strong></li>
-    <li class="item-ending" id="listing-timer-<%= item.id %>">Ending in: <strong class="pull-right">--</strong></li>
+    <li class="item-ending" id="listing-timer-<%= item.id %>">Ending in: <strong class="pull-right">1234</strong></li>
     <li class=" item-bid-button">  
     <% if user_signed_in? %>
       <a class="btn btn-success home-button" id="bid-<%= item.id %>" href="#">Bid Now</a>
@@ -20,6 +20,19 @@
   </ul>
 </div>
 <%= render 'bid_js', listing: item  %>
+<script>
+
+ timer((<%= item.seconds_to_end %> * 1000),
+            function(timeleft) 
+            {
+              document.getElementById("listing-timer-" + <%= item.id %>).innerHTML = "Ending in: <strong class='pull-right'>"+timeleft+"</strong>";
+            },
+            function()
+            {
+              document.getElementById("listing-timer-" + <%=item.id %>).innerHTML = "Ended";
+            },
+            <%= item.id %>)
 
 
+</script>
 

@@ -33,8 +33,43 @@
     <!-- For all other devices -->
     <!-- Size should be 32 x 32 pixels -->
     <%= favicon_link_tag 'favicon.ico', :rel => 'shortcut icon' %>
+    <%= javascript_include_tag "websocket_rails/main" if defined?(WebsocketRails)%>
 
     <%= javascript_include_tag "application" %>
+    <script>
+    x = {};
+    
+    function timer(time,update,complete, timerId) {
+        var start = new Date().getTime();
+        
+        // x['interval-' + timerId]
+        x['interval-' + timerId] = setInterval(function() {
+            var now = time-(new Date().getTime()-start);
+            if( now <= 0) {
+                clearInterval(x['interval-' + timerId]);
+                complete();
+            }
+            else update(Math.floor(now/1000));
+        },100); // the smaller this number, the more accurate the timer will be
+    }
+      
+    // var timer = function() {};
+
+    // function updateTimers() {
+    //   $('.item-ending strong').each(function(){
+    //     // if(!$(this).text().length) {
+    //     //   var start = new Date().getTime();
+    //     //   var now = time-(new Date().getTime()-start);
+    //     // }
+    //     $(this).text( parseInt($(this).text(), 10) - 1 )
+    //   });
+    // }
+
+
+    // setInterval(updateTimers, 1000)
+    // setInterval(function() {$('#listing-timer-2 strong').text( '2000' );}, 2000);
+
+    </script>
   </head>
   <body>
 
@@ -80,7 +115,7 @@
 
         <div class="span12">
           <%= bootstrap_flash %>
-
+<div id="timer"></div>
           <%= yield %>
         </div>
 
@@ -102,60 +137,73 @@
           var divisor_for_seconds = divisor_for_minutes % 60;
           var seconds = Math.ceil(divisor_for_seconds);
              
-          var obj = hours + ":" + minutes + ":" + seconds
+          var obj = hours + ":" + minutes + ":" + seconds;
           return obj;
         }
 
-      var dispatcher = new WebSocketRails('localhost:3000/websocket')
+        if (typeof WebSocketRails !== "undefined" && WebSocketRails !== null)
+        {
+          var dispatcher = new WebSocketRails('localhost:3000/websocket')
+        } 
+        else
+        {
+           var dispatcher = new Pusher('d648766b31d95fb67e17')
+        }
+              // var dispatcher = new WebSocketRails?('localhost:3000/websocket') || new Pusher('d648766b31d95fb67e17')
+
 
       channel = dispatcher.subscribe('bids');
 
       channel.bind('new', function(listing){
         if (listing.seconds_to_end > 0)
           {
-            var timerString = "Ending in: <strong class='pull-right'>"+secondsToTime(listing.seconds_to_end)+"</strong>";
-            var priceString = "Highest bid: <strong class='pull-right'>"+parseFloat(Math.round(listing.current_price * 1) / 100).toFixed(2)+"</strong>";
-            var userString = "Currently winning: <strong class='pull-right'>"+listing.current_winner+"</strong>";
+            if (x['interval-' + listing.id] !== undefined) 
+            {
+              clearInterval(x['interval-' + listing.id])
+              console.log(x['interval-' + listing.id])
+              //console.log(listing)
+            }
+            timer((listing.seconds_to_end * 1000),
+            function(timeleft) 
+            {
+              document.getElementById("listing-timer-" + listing.id).innerHTML = "Ending in: <strong class='pull-right'>"+timeleft+"</strong>";
+            },
+            function()
+            {
+              document.getElementById("listing-timer-" + listing.id).innerHTML = "Ended";
+            },
+            listing.id);
+
+            var priceString = "Highest bid: <strong>£"+parseFloat(Math.round(listing.current_price * 1) / 100).toFixed(2)+"</strong>";
+            var userString = "Currently winning: <strong>"+listing.current_winner+"</strong>";
           }
           else
           {
+                        // console.log(listing)
             var timerString = "Ended";
-            var priceString = "Winning Bid: <strong class='pull-right'>"+parseFloat(Math.round(listing.current_price * 1) / 100).toFixed(2)+"</strong>";
-            var userString = "Winner: <strong class='pull-right'>"+listing.current_winner+"</strong>";
+            var priceString = "Winning Bid: <strong>"+parseFloat(Math.round(listing.current_price * 1) / 100).toFixed(2)+"</strong>";
+            var userString = "Winner: <strong>"+listing.current_winner+"</strong>";
           }                   
 
-          $("#listing-timer-" + listing.id).html((timerString));
+          // $("#listing-timer-" + listing.id).html((timerString));
           $("#listing-price-" + listing.id).html((priceString));
           $("#listing-user-" + listing.id).html((userString));
 
           })
 
-          // var get_listing_values = function(){
-          //   $.getJSON('/listings/active.json', function(listing) { 
-          //       $.each(listing, function(i, listing) {
-          //         if (listing.seconds_to_end > 0)
-          //         {
-          //         var timerString = "Ending in: <strong class='pull-right'>"+secondsToTime(listing.seconds_to_end)+"</strong>";
-          //         var priceString = "Highest bid: <strong class='pull-right'>"+parseFloat(Math.round(listing.current_price * 1) / 100).toFixed(2)+"</strong>";
-          //         var userString = "Currently winning: <strong class='pull-right'>"+listing.current_winner+"</strong>";
-          //         }
-          //         else
-          //         {
-          //         var timerString = "Ended";
-          //         var priceString = "Winning Bid: <strong class='pull-right'>"+parseFloat(Math.round(listing.current_price * 1) / 100).toFixed(2)+"</strong>";
-          //         var userString = "Winner: <strong class='pull-right'>"+listing.current_winner+"</strong>";
-          //         }                   
 
-          //         $("#listing-timer-" + listing.id).html((timerString));
-          //         $("#listing-price-" + listing.id).html((priceString));
-          //         $("#listing-user-" + listing.id).html((userString));
-          //       })
-          //   })
-          // }
-
-          // $(document).ready(function(){
-          //   setInterval(get_listing_values,1000);
-          // });
     </script>
   </body>
 </html>
+
+
+
+
+
+
+
+
+
+
+
+

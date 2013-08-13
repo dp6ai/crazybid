@@ -27,7 +27,7 @@ gem "twitter-bootstrap-rails"
 gem 'jquery-rails'
 
 # Turbolinks makes following links in your web application faster. Read more: https://github.com/rails/turbolinks
-gem 'turbolinks'
+# gem 'turbolinks'
 
 # Build JSON APIs with ease. Read more: https://github.com/rails/jbuilder
 gem 'jbuilder', '~> 1.2'
@@ -46,7 +46,7 @@ group :development, :test do
   gem 'terminal-notifier-guard'
   gem 'shoulda-matchers'
   gem 'factory_girl'
-
+  gem 'websocket-rails'
 end
 
 group :test do
@@ -57,6 +57,7 @@ end
 group :production do
   gem 'pg'
   gem 'rails_12factor'
+  gem 'pusher'
 end
 
 gem 'devise'
