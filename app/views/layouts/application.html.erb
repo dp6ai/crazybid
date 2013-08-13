@@ -38,7 +38,7 @@
     <%= javascript_include_tag "application" %>
     <script>
     x = {};
-    
+
     function timer(time,update,complete, timerId) {
         var start = new Date().getTime();
         
@@ -166,7 +166,7 @@
             timer((listing.seconds_to_end * 1000),
             function(timeleft) 
             {
-              document.getElementById("listing-timer-" + listing.id).innerHTML = "Ending in: <strong class='pull-right'>"+timeleft+"</strong>";
+              document.getElementById("listing-timer-" + listing.id).innerHTML = "Ending in: <strong>"+secondsToTime(timeleft)+"</strong>";
             },
             function()
             {
@@ -186,8 +186,9 @@
           }                   
 
           // $("#listing-timer-" + listing.id).html((timerString));
-          $("#listing-price-" + listing.id).html((priceString));
+          $("#listing-price-" + listing.id ).html((priceString));
           $("#listing-user-" + listing.id).html((userString));
+
 
           })
 

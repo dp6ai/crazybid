@@ -7,9 +7,9 @@
   <h2 class="item-title"><%= item.title %></h2>
   <p class="item-description"><%= truncate(item.description, length: 100) %></p>
   <ul class="unstyled">
-    <li class="item-bid" id="listing-price-<%= item.id %>">Highest bid: <strong class="pull-right">--</strong></li>
-    <li class="item-winning" id="listing-user-<%= item.id %>">Currently winning: <strong class="pull-right">--</strong></li>
-    <li class="item-ending" id="listing-timer-<%= item.id %>">Ending in: <strong class="pull-right">1234</strong></li>
+    <li class="item-bid" id="listing-price-<%= item.id %>">Highest bid: <strong><%= number_to_currency((item.current_price) /100.0, unit: '£') %></strong></li>
+    <li class="item-winning" id="listing-user-<%= item.id %>">Currently winning: <strong><%= item.current_winner %></strong></li>
+    <li class="item-ending" id="listing-timer-<%= item.id %>">Ending in: <strong>--:--:--</strong></li>
     <li class=" item-bid-button">  
     <% if user_signed_in? %>
       <a class="btn btn-success home-button" id="bid-<%= item.id %>" href="#">Bid Now</a>
@@ -25,7 +25,7 @@
  timer((<%= item.seconds_to_end %> * 1000),
             function(timeleft) 
             {
-              document.getElementById("listing-timer-" + <%= item.id %>).innerHTML = "Ending in: <strong class='pull-right'>"+timeleft+"</strong>";
+              document.getElementById("listing-timer-" + <%= item.id %>).innerHTML = "Ending in: <strong>"+secondsToTime(timeleft)+"</strong>";
             },
             function()
             {

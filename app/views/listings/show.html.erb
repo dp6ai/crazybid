@@ -35,7 +35,7 @@
  timer((<%= @listing.seconds_to_end %> * 1000),
             function(timeleft) 
             {
-              document.getElementById("listing-timer-" + <%= @listing.id %>).innerHTML = "Ending in: <strong class='pull-right'>"+timeleft+"</strong>";
+              document.getElementById("listing-timer-" + <%= @listing.id %>).innerHTML = "Ending in: <strong class='pull-right'>"+secondsToTime(timeleft)+"</strong>";
             },
             function()
             {
