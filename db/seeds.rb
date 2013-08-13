@@ -5,13 +5,13 @@
 #
 #   cities = City.create([{ name: 'Chicago' }, { name: 'Copenhagen' }])
 #   Mayor.create(name: 'Emanuel', city: cities.first)
-l = Listing.all
+# l = Listing.all
 
-l.each do |list|
-  puts "Listing.create(:name => '#{list.name}')"
-end
+# l.each do |list|
+#   puts "Listing.create(:name => '#{list.name}')"
+# end
 
-b = Bid.all 
-b.each do |bid|
-  puts "Bid.create(:name => '#{bid.name}')"
-end
+# b = Bid.all 
+# b.each do |bid|
+#   puts "Bid.create(:name => '#{bid.name}')"
+# end
