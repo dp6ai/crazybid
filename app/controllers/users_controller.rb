@@ -14,7 +14,7 @@ class UsersController < ApplicationController
   def profile
 
     # @current_winner = current_winner
-    @won_listings = Listing.all.where(" status = 'e'")
+    @won_listings = Listing.all.where(" status = 'r'")
     @won_listings = @won_listings.select{|l| l.current_winner == current_user.user_name}  
   end
 
