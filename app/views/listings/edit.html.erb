@@ -26,12 +26,18 @@
   <%= f.label :photo %>
   <%= f.file_field :photo %>
 
+  <%= f.label :duration_human, "End Date (UTC)" %>
+  <%= f.datetime_select :duration_human %>
+
   <%= f.label :active %>
   <% if Listing.where(active: true).size >=6 && !@listing.active %>
       <%= f.check_box :active, disabled: true %>
   <% else %>
       <%= f.check_box :active %>
   <% end %>
+
+  <%= f.label :status %>
+  <%= f.select :status, [["Active", "a"], ["Coming Soon", "c"], ["Recent", "r"]] %>
 
   <%= f.submit "Submit" %>
     
