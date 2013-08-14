@@ -64,6 +64,8 @@ gem 'devise'
 gem 'paperclip'
 gem  'aws-s3'
 gem 'aws-sdk'
+
+gem 'stripe', :git => 'https://github.com/stripe/stripe-ruby'
 # Use ActiveModel has_secure_password
 # gem 'bcrypt-ruby', '~> 3.0.0'
 

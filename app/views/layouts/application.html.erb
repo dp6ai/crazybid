@@ -34,7 +34,7 @@
     <!-- Size should be 32 x 32 pixels -->
     <%= favicon_link_tag 'favicon.ico', :rel => 'shortcut icon' %>
     <%= javascript_include_tag "websocket_rails/main" if defined?(WebsocketRails)%>
-
+    <%= javascript_include_tag "https://checkout.stripe.com/v2/checkout.js" %>
     <%= javascript_include_tag "application" %>
     <script>
     x = {};
@@ -86,7 +86,7 @@
             <ul class="nav pull-right">
             	<% if user_signed_in? %>
               	<li><%= link_to "Profile", "/users/edit"  %></li>
-              	<li><%= link_to "Account", "/path2"  %></li>
+              	<li><%= link_to "Account", "/credits/new"  %></li>
               	<li><%= link_to "Sign Out", "/signout"  %></li>
               <% else %>
               	<li><%= link_to "Sign In", "/signin"  %></li>
