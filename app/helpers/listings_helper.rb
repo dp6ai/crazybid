@@ -9,8 +9,11 @@ module ListingsHelper
   end
   
   def paid_status(listing)
-  	"paid" if listing.paid
-  	"unpaid"
+    if listing.paid
+  	   "paid"
+    else
+  	   "unpaid"
+    end
   end
 
 end
