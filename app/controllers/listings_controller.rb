@@ -13,6 +13,7 @@ class ListingsController < ApplicationController
     include ListingsHelper
 
     def new
+        redirect_to_homepage_unless_admin
         @listing = Listing.new
     end
     
@@ -22,7 +23,28 @@ class ListingsController < ApplicationController
     end
 
     def update
+      redirect_to_homepage_unless_admin
       @listing = Listing.find(params[:id])
+      
+      duration_human_modified = DateTime.new(
+        params[:listing]["duration_human(1i)"].to_i, 
+        params[:listing]["duration_human(2i)"].to_i, 
+        params[:listing]["duration_human(3i)"].to_i, 
+        params[:listing]["duration_human(4i)"].to_i, 
+        params[:listing]["duration_human(5i)"].to_i
+        )
+
+      params[:listing].delete("duration_human(1i)")
+      params[:listing].delete("duration_human(2i)")
+      params[:listing].delete("duration_human(3i)")
+      params[:listing].delete("duration_human(4i)")
+      params[:listing].delete("duration_human(5i)")
+
+     
+      converted_duration = duration_human_modified.to_time - (@listing.start_date).to_i
+
+      params[:listing][:duration] = converted_duration
+
       if @listing.update(params[:listing].permit(:title, :description, :starting_price, :rrp, :time_per_bid, :photo, :active, :credits_per_bid, :duration))
         redirect_to @listing
       else
@@ -31,7 +53,7 @@ class ListingsController < ApplicationController
     end
 
     def create
-      # redirect_to_homepage_unless_admin
+       redirect_to_homepage_unless_admin
 
       duration_human_modified = DateTime.new(
         params[:listing]["duration_human(1i)"].to_i, 
@@ -41,14 +63,13 @@ class ListingsController < ApplicationController
         params[:listing]["duration_human(5i)"].to_i
         )
 
-      # redirect_to_homepage_unless_admin
       params[:listing].delete("duration_human(1i)")
       params[:listing].delete("duration_human(2i)")
       params[:listing].delete("duration_human(3i)")
       params[:listing].delete("duration_human(4i)")
       params[:listing].delete("duration_human(5i)")
 
-      redirect_to_homepage_unless_admin
+     
       converted_duration = duration_human_modified.to_time - (Time.now).to_i
 
       params[:listing][:duration] = converted_duration
