@@ -3,10 +3,10 @@ class ListingsController < ApplicationController
     before_filter :redirect_to_homepage_unless_admin, only: [:new, :create, :update]
 
     def index
-      @listings = Listing.all.order("id DESC")
-      @active_listings = Listing.where(active: true)
-      @recent_listings = Listing.where(active: true)
-      @coming_listings = Listing.where(active: true)
+      @listings = Listing.all(:order => "status ASC")
+      @active_listings = Listing.where(status: "a")
+      @recent_listings = Listing.where(status: "r")
+      @coming_listings = Listing.where(status: "c")
       @users = User.all
     end
 
