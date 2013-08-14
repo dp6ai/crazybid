@@ -174,7 +174,8 @@
             listing.id);
 
             var priceString = "Highest bid: <strong>£"+parseFloat(Math.round(listing.current_price * 1) / 100).toFixed(2)+"</strong>";
-            var userString = "Currently winning: <strong>"+listing.current_winner+"</strong>";
+            //var userString = "Currently winning: <strong>"+listing.current_winner+"</strong>";
+            
           }
           else
           {
@@ -183,11 +184,12 @@
             var priceString = "Winning Bid: <strong>"+parseFloat(Math.round(listing.current_price * 1) / 100).toFixed(2)+"</strong>";
             var userString = "Winner: <strong>"+listing.current_winner+"</strong>";
           }                   
-
-          // $("#listing-timer-" + listing.id).html((timerString));
+          var userCredit = listing.user_credits
+          //console.log(listing.user_credits)
+          
           $("#listing-price-" + listing.id ).html((priceString));
           $("#listing-user-" + listing.id).html((userString));
-
+          $(".user-credit-box").html((userCredit));
 
           })
 

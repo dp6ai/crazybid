@@ -34,7 +34,8 @@ class BidsController < ApplicationController
 				id: @listing.id, 
 				current_price: @listing.current_price, 
 				current_winner: @listing.bids.last.user.user_name,
-				seconds_to_end: @listing.seconds_to_end
+				seconds_to_end: @listing.seconds_to_end,
+				user_credits: user.credit
 			}
 		else
 			raise #change this to some failure response

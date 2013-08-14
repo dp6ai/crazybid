@@ -3,7 +3,7 @@ Crazybid::Application.routes.draw do
   devise_for :users
   # resources :users
   resources :listings, constraints: {id: /[0-9]+/} do 
-    resources :bids
+  resources :bids
   end
  
   resources :users
