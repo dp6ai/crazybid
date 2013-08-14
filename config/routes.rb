@@ -2,12 +2,14 @@ Crazybid::Application.routes.draw do
   
   get "credits/new"
   get "credits/create"
-  get "credit/new"
-  get "credit/create"
+  get "users/profile", to: 'users#profile'
+
+  post "users/add_payment", to: 'users#add_payment'
+
   devise_for :users
   # resources :users
   resources :listings, constraints: {id: /[0-9]+/} do 
-  resources :bids
+    resources :bids
   end
  
   resources :users
@@ -27,6 +29,10 @@ Crazybid::Application.routes.draw do
   end
 
   get 'listings/active', to: 'listings#active'
+
+
+ 
+
 
   # match '/users/:id/edit' => 'users#edit', :as => :user, via: :get
   #match '/users/:id' => 'users#update', :as => :user, via: :put

@@ -8,4 +8,9 @@ module ListingsHelper
   	(item.start_date + item.duration).strftime(format='%H:%M:%S') 
   end
   
+  def paid_status(listing)
+  	"paid" if listing.paid
+  	"unpaid"
+  end
+
 end
