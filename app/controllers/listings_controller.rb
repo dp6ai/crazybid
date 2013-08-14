@@ -61,6 +61,16 @@ class ListingsController < ApplicationController
       end
     end
 
+    def destroy
+      redirect_to_homepage_unless_admin
+      @listing = Listing.find(params[:id])
+      title = @listing.title
+      if @listing.destroy
+        redirect_to "/" 
+        flash[:notice] = "You have deleted item #{title}" 
+      end
+    end
+
     def show
       @listing = Listing.find(params[:id])
     end
