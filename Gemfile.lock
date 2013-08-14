@@ -1,3 +1,11 @@
+GIT
+  remote: https://github.com/stripe/stripe-ruby
+  revision: 06c860aeeac012f251807322e49eb5eeb0380a58
+  specs:
+    stripe (1.8.6)
+      multi_json (>= 1.0.4, < 2)
+      rest-client (~> 1.4)
+
 GEM
   remote: https://rubygems.org/
   specs:
@@ -166,6 +174,8 @@ GEM
       json (~> 1.4)
     redis (3.0.4)
     ref (1.0.5)
+    rest-client (1.6.7)
+      mime-types (>= 1.16)
     rspec (2.14.1)
       rspec-core (~> 2.14.0)
       rspec-expectations (~> 2.14.0)
@@ -278,6 +288,7 @@ DEPENDENCIES
   selenium-webdriver
   shoulda-matchers
   sqlite3
+  stripe!
   terminal-notifier-guard
   therubyracer
   twitter-bootstrap-rails

@@ -1,5 +1,9 @@
 Crazybid::Application.routes.draw do
   
+  get "credits/new"
+  get "credits/create"
+  get "credit/new"
+  get "credit/create"
   devise_for :users
   # resources :users
   resources :listings, constraints: {id: /[0-9]+/} do 
@@ -9,6 +13,8 @@ Crazybid::Application.routes.draw do
   resources :users
   # The priority is based upon order of creation: first created -> highest priority.
   # See how all your routes lay out with "rake routes".
+
+  resources :credits
 
   # You can have the root of your site routed with "root"
   root 'listings#index'

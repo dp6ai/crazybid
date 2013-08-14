@@ -1,0 +1,5 @@
+<%= form_tag credits_path do %>
+  <%= select_tag :amount, options_for_select('50 credits (£5)' => 500, "100 credits(£9)" => 900, "500 credits(£40)" => 4000) %>
+
+  <button type="submit" id='buy-credits' class='btn btn-success btn-lg'>Buy Credits</button>
+<% end %>
