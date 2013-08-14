@@ -45,7 +45,7 @@ class ListingsController < ApplicationController
 
       params[:listing][:duration] = converted_duration
 
-      if @listing.update(params[:listing].permit(:title, :description, :starting_price, :rrp, :time_per_bid, :photo, :active, :credits_per_bid, :duration))
+      if @listing.update(params[:listing].permit(:title, :description, :starting_price, :rrp, :time_per_bid, :photo, :active, :credits_per_bid, :duration, :status))
         redirect_to @listing
       else
         render 'edit'
@@ -73,7 +73,7 @@ class ListingsController < ApplicationController
       converted_duration = duration_human_modified.to_time - (Time.now).to_i
 
       params[:listing][:duration] = converted_duration
-      @listing = Listing.new(params[:listing].permit(:title, :description, :starting_price, :rrp, :time_per_bid, :photo, :active, :credits_per_bid, :duration))
+      @listing = Listing.new(params[:listing].permit(:title, :description, :starting_price, :rrp, :time_per_bid, :photo, :active, :credits_per_bid, :duration, :status))
 
       if @listing.save  
         redirect_to "/"
