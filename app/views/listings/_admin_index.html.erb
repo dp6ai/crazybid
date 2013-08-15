@@ -1,5 +1,31 @@
-<h2>Listings...</h2><a href="/listings/new"><button class='btn btn-success'>Create New Listing</button></a>
+
+
+<div class="span12">
+<a href="/listings/new"><button class='btn btn-success new-listing'>Create New Listing</button></a>
+<h2>Last 10 Bids</h2>  
+  <table border="1"  class="table table-hover" id="admin-bid-history">
+      <tr>
+          <th>ID</th>
+          <th>User</th>
+          <th>Listing</th>
+          <th>Current Price (p)</th>
+          <th>Time Left (seconds)</th>
+      </tr>
+      <% @bids.each do |bid| %>
+      <tr>
+          <td><%= bid.id %></td>
+          <td><%= bid.user.user_name %></td>
+          <td><%= bid.listing.title %></td>
+          <td><%= bid.listing.current_price %></td>
+          <td><%= bid.listing.seconds_to_end %></td>
+      </tr>
+      <% end %>
+  </table>
+
+</div>
+
+
 	<%= render 'admin_listings' %>
 
-<h2>Users...</h2>
+
 	<%= render 'admin_users' %>
