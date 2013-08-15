@@ -98,6 +98,7 @@ class ListingsController < ApplicationController
 
     def show
       @listing = Listing.find(params[:id])
+      @bids = @listing.bids.order("created_at DESC") if is_admin?
     end
 
     def active
