@@ -12,6 +12,11 @@
  *= require_tree .
  *= require bootstrap_and_overrides
  */
+body
+{
+background-image:url('subtle_dots.png');
+background-color:#cccccc;
+}
 
  .item-heading{
   line-height:30px;
@@ -108,9 +113,17 @@ a.list-group-item.active .list-group-item-text {
          /*width:320px;*/
 
 }
-
+.front-item{
+border: 1px solid #eeefff;
+min-height:500px;
+text-align:center;
+padding-top:40px;
+margin:20px;
+background-color: #fff;
+border-radius: 5px;
+}
 .front-item:hover{
-  border: 1px solid #000;
+  border: 1px solid #ddd;
 }
 
 .panel .list-group {
@@ -216,7 +229,7 @@ background-color: #EBEBEB;
 .item-title{
   margin-left: 20px;
   margin-right: 20px;
-  color:#666666;
+  color:#353535;
 }
 
 .coming-title{
@@ -227,7 +240,7 @@ background-color: #EBEBEB;
 
 .recent-title{
   font-size:1.3em;
-  color:#666666;
+  color:#333;
   font-weight: normal
 }
 
@@ -251,7 +264,7 @@ padding-right: 0px;
 
 .item-description{
   font-size:0.8em;
-  color:#999;
+  color:#666;
   padding-left: 20px;
 padding-right: 20px;
 }
@@ -295,6 +308,17 @@ margin-right: 20px;
   text-align:center;
 }
 
+ .item-text{
+  font-size:1.3em;
+  color:#666;
+  margin-top:7px;
+  margin-bottom:7px;
+
+
+ }
+ .item-text strong{
+  color:#313131;
+ }
 .home-button{
   width:80%;
 }
@@ -318,5 +342,8 @@ table.listings{
 }
 .cred{
   display:inline
+}
+.crazy-nav{
+  padding-top: 10px;
 }
 

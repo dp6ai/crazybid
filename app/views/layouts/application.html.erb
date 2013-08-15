@@ -83,7 +83,7 @@
           </a>
           <a class="brand" href="/">Crazybid</a>
           <div class="container-fluid nav-collapse">
-            <ul class="nav pull-right">
+            <ul class="nav pull-right crazy-nav">
             	<% if user_signed_in? %>
               	<li><%= link_to "Profile", "/users/profile"  %></li>
               	<li><%= link_to "Account", "/credits/new"  %></li>
@@ -95,7 +95,7 @@
             </ul>
 
             <% if user_signed_in? %>
-              <div class="nav pull-right panel">
+              <div class="nav pull-right panel crazy-panel">
                   <h5 class="cred">Credits</h5>
                   <a class='user-credit-box' href="/credits/new"><%= current_user.credit %></a> 
               </div>
