@@ -17,7 +17,7 @@
             <li class="item-ending item-text" id="listing-timer-<%= @listing.id %>">Ending in: <strong>--:--:--</strong></li>
             <li class=" item-bid-button">  
             <% if user_signed_in? %>
-            <a class="btn btn-large btn-primary " id="bid-<%= item.id %>" href="#">Bid Now</a>
+            <a class="btn btn-large btn-primary " id="bid-<%= @listing.id %>" href="#">Bid Now</a>
             <% else %>
             <a class="btn btn-large btn-primary " id="bid-button" href="/signin">Bid Now</a>
             <% end %>
