@@ -124,6 +124,27 @@ margin-bottom:20px;
 background-color: #fff;
 border-radius: 5px;
 }
+
+.list-item{
+  margin-top:30px;
+  margin-left:20px;
+}
+
+.item-info{
+  padding-top:10px;
+
+}
+.listing-item{
+border: 1px solid #eeefff;
+min-height:700px;
+text-align:center;
+padding-top:40px;
+margin-top:20px;
+margin-bottom:20px;
+background-color: #fff;
+border-radius: 5px;
+}
+
 .front-item:hover{
   border: 1px solid #ddd;
 }

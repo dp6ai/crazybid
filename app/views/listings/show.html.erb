@@ -1,63 +1,70 @@
- <div class="row-fluid">
-    <div class="span6 offset3">
-      <h1 class="listing-title"><%= @listing.title %></h1>
-    </div>
-  </div>
+<div class="listing-container">
   <div class="row-fluid">
-    <div class="span2 offset3 listing-image">
-      <%= image_tag("#{@listing.photo.url(:medium)}") %>
-    </div>
-    <div class="span4 well listing-box clearfix">
-        <div class="row-fluid">
-            <div class="left listing-box-left">
-              <p id="listing-price-<%= @listing.id%>" class="listing-price">Highest bid: <strong><%= number_to_currency((@listing.current_price) /100.0, unit: '£') %></strong> </p>
-              <p id="listing-timer-<%= @listing.id%>" class="listing-timer">Ending in:  </p>
-            </div>
-            <div class="right listing-box-right">
-              <p id="listing-user-<%= @listing.id%>" class="listing-winner">Currently winning: <strong><%= @listing.current_winner %></strong> </p>
-              <% if user_signed_in? %>
-                <a class="btn btn-success" id="bid-<%= params[:id] %>" href="#">Bid Now</a>
-              <% else %>
-                <a class="btn btn-success listing-bid" id="bid-button" href="/signin">Bid Now</a>
-              <% end %>
-            </div>
-          </div> 
+    <div class="listing-item span6 offset3">
+      <div class="row-fluid">
+        <div class="span12">
+          <h2 class="item-title"><%= @listing.title %></h2>
         </div>
-  </div>
-  <div class="row-fluid">
-    <div class="span6 offset3 well listing-description">
-      <p><%= @listing.description %></p>
-    </div>
-
-  <div class="row-fluid span6 offset3">
-   <% if is_admin? %>
-        <h2>Bid History</h2>
- 
-        <table border="1"  class="table table-hover" id="admin-bid-history">
+      </div>
+      <div class="row-fluid list-item">
+        <div class="item-image span5 pull-left offset1">
+            <%= image_tag(@listing.photo.url(:square), :class => "img-responsive", :alt => "Responsive image") %> 
+        </div>
+        <div class="list-item span5">
+          <ul class="unstyled">
+            <li class="item-bid item-text" id="listing-price-<%= @listing.id %>">Highest bid: <strong><%= number_to_currency((@listing.current_price) /100.0, unit: '£') %></strong></li>
+            <li class="item-winning item-text" id="listing-user-<%= @listing.id %>">Currently winning: <strong><%= @listing.current_winner %></strong></li>
+            <li class="item-ending item-text" id="listing-timer-<%= @listing.id %>">Ending in: <strong>--:--:--</strong></li>
+            <li class=" item-bid-button">  
+            <% if user_signed_in? %>
+            <a class="btn btn-large btn-primary " id="bid-<%= item.id %>" href="#">Bid Now</a>
+            <% else %>
+            <a class="btn btn-large btn-primary " id="bid-button" href="/signin">Bid Now</a>
+            <% end %>
+            </li>
+          </ul>
+          <div class='price-per-bid'>
+            <ul class="unstyled">
+              <li class="item-price-bid">Credits per bid: <strong><%= @listing.credits_per_bid %></strong>
+              </li>
+            </ul>
+          </div>
+        </div>
+      </div>
+      <div class="row-fluid list-item">
+        <div class="span9 offset1">
+          <p><%= @listing.description %></p>
+        </div>
+      </div>
+      <div class="row-fluid span12 offset3">
+        <% if is_admin? %>
+          <h2>Bid History</h2>
+          <table border="1"  class="table table-hover" id="admin-bid-history">
             <tr>
-                <th>ID</th>
-                <th>User</th>
-                <th>Listing</th>
-                <th>Current Price (p)</th>
-                <th>Time Left (seconds)</th>
+              <th>ID</th>
+              <th>User</th>
+              <th>Listing</th>
+              <th>Current Price (p)</th>
+              <th>Time Left (seconds)</th>
             </tr>
             <% @bids.each do |bid| %>
             <tr>
-                <td><%= bid.id %></td>
-                <td><%= bid.user.user_name %></td>
-                <td><%= bid.listing.title %></td>
-                <td><%= bid.listing.current_price %></td>
-                <td><%= bid.listing.seconds_to_end %></td>
+              <td><%= bid.id %></td>
+              <td><%= bid.user.user_name %></td>
+              <td><%= bid.listing.title %></td>
+              <td><%= bid.listing.current_price %></td>
+              <td><%= bid.listing.seconds_to_end %></td>
             </tr>
             <% end %>
-        </table>
-        
-      <% end %>
+          </table>
+        <% end %>
+      </div>
+    </div>
   </div>
-
-  </div>    
 </div>
 <%= render 'bid_js', listing: @listing %>
+
+
 <script>
 
  timer((<%= @listing.seconds_to_end %> * 1000),
