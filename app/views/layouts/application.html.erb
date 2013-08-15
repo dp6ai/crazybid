@@ -96,8 +96,8 @@
 
             <% if user_signed_in? %>
               <div class="nav pull-right panel">
-                  <h5>Credits</h5>
-                  <a class='user-credit-box' href="#"><%= current_user.credit %></a> 
+                  <h5 class="cred">Credits</h5>
+                  <a class='user-credit-box' href="/credits/new"><%= current_user.credit %></a> 
               </div>
             <% end %>
             <% if user_signed_in? %>
