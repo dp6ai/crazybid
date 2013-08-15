@@ -3,18 +3,21 @@
 	<table border="1"  class="table table-hover listings">
 		<thead>
 			<tr>
+				<th>ID</th>
 				<th>Item</th>
 				<th>Image</th>
 				<th>Description</th>
 				<th>Price</th>
 				<th>Bid #</th>
 				<th>Status</th>
+				<th>View</th>
+				<th>Edit</th>
 				<th>Delete</th>
 			</tr>
 		</thead>
 		<tbody>
 			<% @listings.each do |listing| %>
-				<tr class="admin-lists" onclick="document.location = '/listings/<%= listing.id %>/edit';" >
+				<tr class="admin-lists">
 					<%= render 'admin_list_item', item: listing %>
 				</tr>
 			<% end %> 

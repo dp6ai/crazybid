@@ -16,4 +16,13 @@ module ListingsHelper
     end
   end
 
+  def listing_status(listing)
+    case listing.status
+    when "a" then "Active"
+    when "c" then "Coming Soon"
+    when "r" then "Expired"
+    end
+  end
+
+
 end

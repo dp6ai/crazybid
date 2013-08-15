@@ -1,4 +1,7 @@
 <td>
+  <%= item.id %>
+</td>
+<td>
   <%= item.title %>
 </td>
 <td>
@@ -16,7 +19,13 @@
   <%= item.bids.size %>
 </td>
 <td>
-  <%= item.status %>
+  <%= listing_status(item) %>
+</td>
+<td>
+  <%= link_to "View", listing_path(item) %>
+</td>
+<td>
+<%= link_to 'Edit', edit_listing_path(item) %>
 </td>
 <td>
 	<%= link_to 'Destroy', item, :method => :delete, :confirm => "Are you sure?" %>
