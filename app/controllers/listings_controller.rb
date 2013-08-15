@@ -50,7 +50,7 @@ class ListingsController < ApplicationController
       params[:listing][:duration] = converted_duration
 
       if @listing.update(params[:listing].permit(:title, :description, :starting_price, :rrp, :time_per_bid, :photo, :active, :credits_per_bid, :duration, :status))
-        redirect_to @listing
+        redirect_to '/'
       else
         render 'edit'
       end

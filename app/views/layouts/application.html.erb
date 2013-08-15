@@ -85,7 +85,7 @@
           <div class="container-fluid nav-collapse">
             <ul class="nav pull-right">
             	<% if user_signed_in? %>
-              	<li><%= link_to "Profile", "/users/edit"  %></li>
+              	<li><%= link_to "Profile", "/users/profile"  %></li>
               	<li><%= link_to "Account", "/credits/new"  %></li>
               	<li><%= link_to "Sign Out", "/signout"  %></li>
               <% else %>
@@ -96,8 +96,8 @@
 
             <% if user_signed_in? %>
               <div class="nav pull-right panel">
-                  <h5>Credits</h5>
-                  <a class='user-credit-box' href="#"><%= current_user.credit %></a> 
+                  <h5 class="cred">Credits</h5>
+                  <a class='user-credit-box' href="/credits/new"><%= current_user.credit %></a> 
               </div>
             <% end %>
             <% if user_signed_in? %>

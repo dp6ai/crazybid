@@ -6,8 +6,8 @@
   </div>
   <h2 class="recent-title"><%= item.title %></h2>
   <ul class="unstyled">
-    <li class="recent-bid" id="listing-price-<%= item.id %>">Winning Bid: <strong class="pull-right">--</strong></li>
-    <li class="recent-winning" id="listing-user-<%= item.id %>">Winner: <strong class="pull-right">--</strong></li>
+    <li class="recent-bid" id="listing-price-<%= item.id %>">Winning Bid: <strong class="pull-right"><%= number_to_currency((item.current_price) /100.0, unit: '£') %></strong></li>
+    <li class="recent-winning" id="listing-user-<%= item.id %>">Winner: <strong class="pull-right"><%= item.current_winner %></strong></li>
   </ul>
 </div>
 

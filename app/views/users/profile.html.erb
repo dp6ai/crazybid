@@ -1,36 +1,48 @@
-<!-- <h1><%= @won_listings[0].title %></h1> -->
-
-	<table border="1"  class="">
-			<thead>
-				<tr>
-					<th>Auction</th>
-					<th>Auction ID</th>
-					<th>Date</th>
-					<th>Price</th>
-					<th>Payment status</th>
-					<th>Pay</th>
-				</tr>
-			</thead>
-			<tbody>
-				<% @won_listings.each do |listing| %>
-					<tr class="" >
-						<td><%= listing.title %></td>
-						<td><%= listing.id %></td>
-						<td><%= listing.created_at %></td>
-						<td><%= listing.current_price %></td>
-						<td><%= paid_status(listing) %></td>
-						<td><%= form_tag users_add_payment_path do %>
-											<%= hidden_field_tag :amount, listing.current_price %>
-											<%= hidden_field_tag :listing_id, listing.id %>
-											 <script
-											    src="https://checkout.stripe.com/v2/checkout.js" class="stripe-button"
-											    data-key="pk_test_1TDclomvZ00S7bZeiilZcX0A"
-											    data-amount="<%= listing.current_price %>"
-											    data-name="CrazyBids"
-											    data-description="Payment for Auction ID <%= listing.id %>">
-											  </script>
-								<% end %></td>
+<div class="row-fluid">
+  <div class="span12">
+		<table border="1"  class="table table-hover listings">
+				<thead>
+					<tr>
+						<th>Auction</th>
+						<th>Auction ID</th>
+						<th>Date</th>
+						<th>Price</th>
+						<th>Payment status</th>
+						<th>Pay</th>
 					</tr>
-				<% end %> 
-			<tbody>
-		</table>
+				</thead>
+				<tbody>
+					<% @won_listings.each do |listing| %>
+						<tr class="" >
+							<td><%= listing.title %></td>
+							<td><%= listing.id %></td>
+							<td><%= listing.created_at %></td>
+							<td><%= listing.current_price %></td>
+							<td><%= paid_status(listing) %></td>
+							
+							<td>
+								<% if paid_status(listing) == "unpaid"  %>
+									<%= form_tag users_add_payment_path do %>
+										<%= hidden_field_tag :amount, listing.current_price %>
+										<%= hidden_field_tag :listing_id, listing.id %>
+											<script
+										    src="https://checkout.stripe.com/v2/checkout.js" class="stripe-button"
+										    data-key="pk_test_1TDclomvZ00S7bZeiilZcX0A"
+										    data-amount="<%= listing.current_price %>"
+										    data-name="CrazyBids"
+										    data-description="Payment for Auction ID <%= listing.id %>">
+										  </script>
+									<% end %>
+								<% end %>
+							</td>
+						</tr>
+					<% end %> 
+				<tbody>
+			</table>
+	</div>
+<br/>
+<br/>
+</div>
+<div class="row-fluid" >
+	<%= link_to "Edit your profile", edit_user_registration_path %>
+</div>
