@@ -9,13 +9,13 @@
           <th>User</th>
           <th>Listing</th>
           <th>Current Price (p)</th>
-          <th>Time Left (seconds)</th>
+          <th>Time Left on Listing (seconds)</th>
       </tr>
       <% @bids.each do |bid| %>
       <tr>
           <td><%= bid.id %></td>
           <td><%= bid.user.user_name %></td>
-          <td><%= bid.listing.title %></td>
+          <td><%= link_to bid.listing.title, listing_path(bid.listing) %></td>
           <td><%= bid.listing.current_price %></td>
           <td><%= bid.listing.seconds_to_end %></td>
       </tr>
