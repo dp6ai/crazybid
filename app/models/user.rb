@@ -11,7 +11,7 @@ class User < ActiveRecord::Base
           :confirmable,
           authentication_keys: [ :user_name ]
   # before_validation :set_initial_credits
-
+  validates_uniqueness_of :user_name
   validates_numericality_of :credit, greater_than: -1
   has_many :bids
 
