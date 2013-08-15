@@ -32,9 +32,22 @@
 
 .listing-box-left{
   line-height: 1.5;
+  width: 149px;
 }
 .listing-box-right{
   margin-right: 50px;
+
+   @media(max-width: 1338px) {
+    float: left;
+   } 
+
+    @media(max-width: 782px) {
+    float: right;
+   } 
+
+   @media(max-width: 445px) {
+    float: left;
+   } 
 }
 
 .listing-bid{

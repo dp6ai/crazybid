@@ -8,20 +8,22 @@
     <div class="span2 offset3 listing-image">
       <%= image_tag("#{@listing.photo.url(:medium)}") %>
     </div>
-    <div class="span5 offset1 well listing-box">
-      <div class="left listing-box-left">
-        <p id="listing-price-<%= @listing.id%>" class="listing-price">Highest bid: <strong><%= number_to_currency((@listing.current_price) /100.0, unit: '£') %></strong> </p>
-        <p id="listing-timer-<%= @listing.id%>" class="listing-timer">Ending in:  </p>
-      </div>
-      <div class="right listing-box-right">
-        <p id="listing-user-<%= @listing.id%>" class="listing-winner">Currently winning: <strong><%= @listing.current_winner %></strong> </p>
-        <% if user_signed_in? %>
-          <a class="btn btn-success" id="bid-<%= params[:id] %>" href="#">Bid Now</a>
-        <% else %>
-          <a class="btn btn-success listing-bid" id="bid-button" href="/signin">Bid Now</a>
-        <% end %>
-      </div>
-    </div> 
+    <div class="span4 well listing-box clearfix">
+        <div class="row-fluid">
+            <div class="left listing-box-left">
+              <p id="listing-price-<%= @listing.id%>" class="listing-price">Highest bid: <strong><%= number_to_currency((@listing.current_price) /100.0, unit: '£') %></strong> </p>
+              <p id="listing-timer-<%= @listing.id%>" class="listing-timer">Ending in:  </p>
+            </div>
+            <div class="right listing-box-right">
+              <p id="listing-user-<%= @listing.id%>" class="listing-winner">Currently winning: <strong><%= @listing.current_winner %></strong> </p>
+              <% if user_signed_in? %>
+                <a class="btn btn-success" id="bid-<%= params[:id] %>" href="#">Bid Now</a>
+              <% else %>
+                <a class="btn btn-success listing-bid" id="bid-button" href="/signin">Bid Now</a>
+              <% end %>
+            </div>
+          </div> 
+        </div>
   </div>
   <div class="row-fluid">
     <div class="span6 offset3 well listing-description">
