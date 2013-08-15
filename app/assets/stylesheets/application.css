@@ -232,9 +232,7 @@ background-color: #EBEBEB;
 }
 
 .item-image{
-	/*height:300px;*/
-
-/*padding-bottom: 10px;*/
+  text-align: center;
 }
 
 .coming-image{
