@@ -34,7 +34,6 @@ gem 'jbuilder', '~> 1.2'
 
 gem 'seed_dumper'
 #Adding web sockets to app
-gem 'websocket-rails'
 group :doc do
   # bundle exec rake doc:rails generates the API under doc/api.
   gem 'sdoc', require: false
