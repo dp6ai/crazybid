@@ -27,12 +27,12 @@
   <%= f.label :duration_human %>
   <%= f.datetime_select :duration_human %>
 
-  <%= f.label :active %>
-  <% if Listing.where(active: true).size >=6 %>
-    <%= f.check_box :active, disabled: true %>
-  <% else %>
-    <%= f.check_box :active %>
-  <% end %>
+  <%# f.label :active %>
+  <%# if Listing.where(active: true).size >=6 %>
+    <%# f.check_box :active, disabled: true %>
+  <%# else %>
+    <%# f.check_box :active %>
+  <%# end %>
 
   <%= f.label :status %>
   <%= f.select :status, [["Active", "a"], ["Coming Soon", "c"], ["Recent", "r"]] %>

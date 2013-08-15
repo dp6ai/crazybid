@@ -126,6 +126,12 @@ border-radius: 5px;
   border: 1px solid #ddd;
 }
 
+.coming-item{
+  text-align:center;
+}
+.recent-item{
+  text-align:center;
+}
 .panel .list-group {
   margin: 15px -15px -15px;
 }
