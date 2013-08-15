@@ -1,7 +1,7 @@
-<div class="row-fluid">
-	<h2>Coming Auctions</h2>
+<div class="row-fluid margin-left">
+	<h2>Coming Soon</h2>
 </div>
-<div class="row-fluid">
+<div class="row-fluid margin-left">
   <% @coming_listings.pop(6).each do |coming_item| %>
     <div class="span2">
       <%= render 'coming_item', item: coming_item %>

@@ -1,11 +1,11 @@
-<div class="row-fluid">
+<div class="row-fluid margin-left">
   <% @active_listings.pop(3).each do |listing| %>
     <div class="span4">
       <%= render 'list_item', item: listing %>
     </div>
   <% end %> 
 </div>
-<div class="row-fluid">
+<div class="row-fluid margin-left">
   <% @active_listings.pop(3).each do |listing| %>
     <div class="span4">
       <%= render 'list_item', item: listing %>

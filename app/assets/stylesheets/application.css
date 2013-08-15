@@ -118,7 +118,9 @@ border: 1px solid #eeefff;
 min-height:500px;
 text-align:center;
 padding-top:40px;
-margin:20px;
+margin-top:20px;
+margin-bottom:20px;
+
 background-color: #fff;
 border-radius: 5px;
 }
@@ -349,5 +351,8 @@ table.listings{
 }
 .crazy-nav{
   padding-top: 10px;
+}
+.margin-left{
+  margin-left:20px;
 }
 
