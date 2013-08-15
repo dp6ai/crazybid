@@ -89,6 +89,14 @@ config.paperclip_defaults = {
     :secret_access_key => ENV['AWS_SECRET_ACCESS_KEY']
   }
 }
-
+ActionMailer::Base.smtp_settings = {
+  :address        => 'smtp.sendgrid.net',
+  :port           => '587',
+  :authentication => :plain,
+  :user_name      => ENV['SENDGRID_USERNAME'],
+  :password       => ENV['SENDGRID_PASSWORD'],
+  :domain         => 'crazybid.com',
+  :enable_starttls_auto => true
+}
   
 end
